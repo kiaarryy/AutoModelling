@@ -148,7 +148,9 @@ def _align_device_parts(parts: List[Tuple[pd.DataFrame, float]]) -> Tuple[pd.Dat
     if not periodic:
         raise ValueError("device has no periodic Trend Log channel")
     interval_seconds = float(np.median([interval for _, interval in periodic]))
-    frequency = "%dS" % int(round(interval_seconds))
+    # Lower-case ``s`` is accepted by both older pandas releases and pandas 3;
+    # the upper-case alias was removed in pandas 3.
+    frequency = "%ds" % int(round(interval_seconds))
     prepared = []
     starts = []
     ends = []
