@@ -86,12 +86,12 @@ commercial data or Modelica licence.
 
 The external FMUs are not stored in Git because they depend on the Modelica
 Buildings Library and the user's export toolchain. Their interfaces and source
-components are versioned here. Detailed expected outputs and limitations are in
-[REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+components are versioned here; `scripts/export_model_type_template.mos`
+documents the OpenModelica and Dymola export entry points. Detailed expected
+outputs and limitations are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
 ## Licence and citation
 
 The software is released under the MIT License. Dataset licences remain with
 their respective providers. Cite the associated article and the software
 release; citation metadata are provided in [CITATION.cff](CITATION.cff).
-

@@ -1,0 +1,29 @@
+// Template: export a calibration-wrapper FMU for a NEW device model type.
+//
+// autofmu drives FMUs; it does not ship compiled binaries. To add a model type
+// whose FMU does not exist yet
+// (e.g. Buildings FixedApproach cooling tower, DryCoilEffectivenessNTU HX,
+// AbsorptionIndirectSteam chiller), build its FMU once on a host that has a
+// Modelica toolchain + the Buildings 12.1.0 library, then drop the .fmu in and
+// declare the candidate in configs/fmu/<class>.yaml.
+//
+// Start from the table-free interfaces in modelica/components/<family>/ and add
+// the same input/output names declared in configs/fmu/<family>.yaml. Keep every
+// identified parameter exposed with annotation(Evaluate=false).
+//
+// ----------------------------------------------------------------------------
+// OpenModelica (fully open; the pump FMU is built this way):
+//   omc export_model_type_template.mos
+// ----------------------------------------------------------------------------
+loadModel(Modelica, {"4.0.0"}); getErrorString();
+loadModel(Buildings, {"12.1.0"}); getErrorString();          // omit for a Buildings-free own model
+loadFile("MyNewTypeWrapper.mo"); getErrorString();
+// CoSimulation FMI 2.0, matching how autofmu's runner drives the others:
+buildModelFMU(MyNewTypeWrapper, version="2.0", fmuType="cs"); getErrorString();
+
+// ----------------------------------------------------------------------------
+// Dymola (the chiller/CT/HX FMUs are built this way; needs a Dymola licence):
+//   dymola /nowindow export_model_type_template.mos  (translate calls below)
+// ----------------------------------------------------------------------------
+//   openModel("MyNewTypeWrapper.mo");
+//   translateModelFMU("MyNewTypeWrapper", false, "", "2", "cs", false, 0);

@@ -39,7 +39,9 @@ Use a new `--run-id` after changing a configuration or the code.
 FMU execution requires `fmpy` and locally exported FMUs. Modelica source
 interfaces are supplied under `modelica/components/`; compiled FMUs are omitted
 because their redistribution and binary compatibility depend on the user's
-Modelica library/toolchain. Set `AUTOFMU_FMU_ROOT` to the export root.
+Modelica library/toolchain. `scripts/export_model_type_template.mos` gives the
+export pattern for OpenModelica and Dymola. Set `AUTOFMU_FMU_ROOT` to the export
+root.
 
 ## Evidence regeneration
 
@@ -47,4 +49,3 @@ The scripts in `scripts/` rebuild the released cross-site tables and figures
 from their declared input artefacts. Some cross-site scripts require the
 commercial-site derived run outputs that are represented here by the released
 tables; they do not make the confidential raw archives public.
-
