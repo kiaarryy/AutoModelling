@@ -1,0 +1,4 @@
+device,family,n_total,n_retained,retained_pct,removed_by_gate,removed_by_quarantine
+HX_01,heat_exchanger,105120,91446,86.9920091324201,13674,0
+HX_02,heat_exchanger,105120,92726,88.20966514459666,12394,0
+HX_03,heat_exchanger,105120,0,0.0,105120,0

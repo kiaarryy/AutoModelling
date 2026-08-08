@@ -1,0 +1,8 @@
+tower,rows,span_days,identification,selection,test,buffer,unused,status,usable,warnings
+CT_01,36779,261.3,8394,5726,17904,4322,433,full_split,True,
+CT_02,1443,202.6,0,809,171,30,433,blocked_insufficient_identification,False,"identification has 0 samples, below the 288 required; status=blocked_insufficient_identification; test has 171 samples, below the 2016 required; status=blocked_insufficient_identification"
+CT_03,41876,348.3,6957,11500,16589,6397,433,full_split,True,
+CT_04,3515,302.5,284,206,2109,903,13,blocked_insufficient_identification,False,"identification has 284 samples, below the 288 required; status=blocked_insufficient_identification; selection has 206 samples, below the 288 required; status=blocked_insufficient_identification"
+CT_05,10519,301.0,889,4380,3643,1454,153,full_split,True,
+CT_06,5110,28.8,1104,1082,0,2924,0,identification_only,False,"test has 0 samples, below the 2016 required; status=identification_only"
+CT_07,28821,168.7,3733,5621,13090,6167,210,full_split,True,

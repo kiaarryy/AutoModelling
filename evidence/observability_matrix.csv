@@ -1,0 +1,5 @@
+site,cop_above_envelope,cop_below_unity,driver_not_excited,frozen_channel,liveness_channel_absent,run_signal_absent,run_signal_dead,run_signal_uncorroborated,synthetic_channel,target_sensor_dead,devices,scored
+hkust,0,1,12,2,13,0,2,25,24,1,40,9
+lbnl,0,1,0,2,0,0,0,1,0,0,8,6
+site_a,6,0,14,0,7,3,0,0,0,1,34,19
+tencent,0,0,0,0,0,6,0,0,0,0,30,24

@@ -1,0 +1,22 @@
+source_csv: chiller/CH_06.csv
+timestamp: DateTime
+columns:
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  chw_flow_m3_h:
+    source: CH-3E06-CHW-WFM.Present Value (lps)
+    scale: 3.6
+  cw_flow_m3_h:
+    source: CH-3E06-CDW-WFM.Present Value (lps)
+    scale: 3.6
+  tchws_C:
+    source: CH-3E06-CHWS-WTS.Present Value (°C)
+  tchwr_C:
+    source: CH-3E06-CHWR-WTS.Present Value (°C)
+  tcws_C:
+    source: CH-3E06-CDWS-WTS.Present Value (°C)
+  tcwr_C:
+    source: CH-3E06-CDWR-WTS.Present Value (°C)
+  run_signal:
+    source: CH-3E06-VSD-STS.Present Value ( )

@@ -1,0 +1,15 @@
+site,family,status,devices
+site_a,chiller,blocked_insufficient_identification,2
+site_a,chiller,blocked,1
+site_a,chiller,identification_only,1
+site_a,cooling_tower,blocked_insufficient_identification,2
+site_a,cooling_tower,identification_only,1
+site_a,pump,identification_only,5
+site_a,pump,blocked_insufficient_identification,2
+site_a,heat_exchanger,blocked,1
+tencent,heat_exchanger,power_calibration_blocked,6
+hkust,pump,blocked,27
+hkust,pump,data_limited,3
+hkust,pump,power_calibration_blocked,1
+lbnl,chiller,blocked,1
+lbnl,cooling_tower,blocked,1

@@ -1,0 +1,199 @@
+# FMU interface contract: cooling tower (Buildings Merkel / YorkCalc).
+# Drive mode: data_table (CoSimulation). autofmu fits the thermal parameters and
+# fan-power curve, injects them as start_values; the FMU computes T/Q/P.
+#
+# Selection uses T (outlet temp) + Q only -- fan power P is computed by the same
+# algorithm in both models and is numerically identical, so P is reported, not
+# used to discriminate Merkel vs YorkCalc.
+#
+# Each candidate is a *model type*. Its per-type behaviour is declared here and
+# consumed generically by autofmu.devices.model_types (no engine branching):
+#   fit_strategy       -- which fitter the device engine dispatches to
+#   static_start_values-- FMU params fixed per run from the estimated base nominals
+#                         ({base: KEY}) or a constant ({const: V})
+#   grid               -- the parameter search space (product of named axes)
+#   fan_power          -- where the fan-power curve coefficients/nominal go
+# Adding a 3rd type (e.g. Buildings FixedApproach) = add a candidate block + its
+# exported FMU; see docs/EXTENSIBLE_TYPES.md. Restrict which types compete with
+# `enabled_candidates` here, or per project with `fmu_candidates`.
+device_type: cooling_tower
+drive: data_table
+fmi_type: CoSimulation
+
+fmu_root: ${AUTOFMU_FMU_ROOT}
+
+score_variables: [tout, cooling]
+report_only: [power]
+
+# enabled_candidates: [Merkel, YorkCalc]   # default: all candidates below compete
+
+# output_scale: single-cell FMU outputs are multiplied up to whole-tower totals
+# by the L2 data-driven per-timestep effective fan/cell count (fans_on_count).
+output_scale:
+  Q_s: 2.0
+  P_s: 2.0
+
+candidates:
+  - name: Merkel         # Buildings.Fluid.HeatExchangers.CoolingTowers.Merkel
+    fmu: Cali_EIR_BSU_CH1/Modelica/CTM_0FMU.fmu
+    table_param: Tout1.fileName
+    output_interval: 300
+    fit_strategy: grid_search
+    outputs: [TOut_m, TOut_s, Q_m, Q_s, P_m, P_s]
+    compare:
+      - {name: tout,    measured: TOut_m, simulated: TOut_s}
+      - {name: cooling, measured: Q_m,    simulated: Q_s}
+      - {name: power,   measured: P_m,    simulated: P_s}
+    tunable_parameters:
+      thermal: ['merkel.ratWatAir_nominal', 'merkel.UACor.cWatFra[1]',
+                'merkel.UACor.cWatFra[2]', 'merkel.UACor.cWatFra[3]']
+      fan_power: ['merkel.PFan_nominal', 'merkel.fanRelPow.r_P[1]', 'merkel.fanRelPow.r_P[2]',
+                  'merkel.fanRelPow.r_P[3]', 'merkel.fanRelPow.r_P[4]', 'merkel.fanRelPow.r_P[5]']
+      nominal: ['merkel.TAirInWB_nominal', 'merkel.yMin', 'merkel.fraFreCon']
+    fan_power: {curve_prefix: 'merkel.fanRelPow.r_P', nominal_key: 'merkel.PFan_nominal'}
+    static_start_values:
+      merkel.TAirInWB_nominal: {base: TAirInWB_nominal}
+      merkel.TWatIn_nominal:   {base: TWatIn_nominal}
+      merkel.TWatOut_nominal:  {base: TWatOut_nominal}
+      merkel.yMin:             {base: yMin}
+      merkel.fraFreCon:        {base: fraFreCon}
+    grid:
+      axes:
+        - name: ratWatAir
+          values: [0.8, 1.0, 1.2, 1.5, 1.8]
+          apply: {merkel.ratWatAir_nominal: {value: axis}}
+        - name: cWatFra_scale
+          values: [0.75, 1.0, 1.25, 1.5]
+          apply:
+            merkel.UACor.cWatFra[1]: {default: 0.1082,  scale: axis}
+            merkel.UACor.cWatFra[2]: {default: 1.667,   scale: axis}
+            merkel.UACor.cWatFra[3]: {default: -0.7713, scale: axis}
+
+  - name: YorkCalc       # Site A YorkCalc 27-coefficient polynomial wrapper
+    # Closed-loop wrapper (modelica/wrappers/SiteACTYork27ClosedLoop.mo). The
+    # previous SiteACTYork27.fmu read the cooling range from the input table,
+    # where it is Tin - Tout_measured, so its predicted outlet was a function of
+    # the measured outlet. See docs/REVISION_ENERGY_01_AUDIT.md section B.
+    #
+    # NOTE: the coordinate grid below scales each of the 27 coefficients by
+    # 0.9/1.0/1.1 in turn. That was adequate for an open-loop one-step fit and
+    # is not adequate here -- autofmu.devices.york27_fit.fit_closed_loop does
+    # simulation-error minimisation with a well-posedness constraint and should
+    # replace it as a dedicated fit_strategy.
+    fmu: outputs/cooling_tower/york27_fmu_site_a/fmu/SiteACTYork27ClosedLoop.fmu
+    table_param: table_path
+    output_interval: 300
+    # Simulation-error minimisation with a well-posedness constraint
+    # (autofmu.devices.york27_fit). The coordinate grid that used to sit below
+    # scaled each coefficient by 0.9/1.0/1.1 one axis at a time -- a coordinate
+    # search over 27 strongly coupled axes, optimising the open-loop residual.
+    fit_strategy: closed_loop_simulation_error
+    outputs: [TOut_m, TOut_s, Q_m, Q_s, P_m, P_s]
+    compare:
+      - {name: tout,    measured: TOut_m, simulated: TOut_s}
+      - {name: cooling, measured: Q_m,    simulated: Q_s}
+      - {name: power,   measured: P_m,    simulated: P_s}
+    tunable_parameters:
+      thermal: ['f[1]', 'f[2]', 'f[3]', 'f[4]', 'f[5]', 'f[6]', 'f[7]', 'f[8]', 'f[9]',
+                'f[10]', 'f[11]', 'f[12]', 'f[13]', 'f[14]', 'f[15]', 'f[16]', 'f[17]', 'f[18]',
+                'f[19]', 'f[20]', 'f[21]', 'f[22]', 'f[23]', 'f[24]', 'f[25]', 'f[26]', 'f[27]']
+      fan_power: ['PFan_nominal', 'fanRelPow_r_P[1]', 'fanRelPow_r_P[2]',
+                  'fanRelPow_r_P[3]', 'fanRelPow_r_P[4]', 'fanRelPow_r_P[5]']
+      nominal: [m_flow_nominal, yMin]
+    fan_power: {curve_prefix: fanRelPow_r_P, nominal_key: PFan_nominal}
+    static_start_values:
+      m_flow_nominal: {base: m_flow_nominal}
+      yMin:           {base: yMin}
+      RlgMin:         {const: 0.05}
+      RlgMax:         {const: 8.0}
+      TAppMin_C:      {const: 0.0}
+      TAppMax_C:      {const: 40.0}
+      cpWat:          {const: 4180.0}
+      # MBL initial-equation normalisation of the water-flow ratio; 1.0 keeps the
+      # legacy axis, the refit script back-solves it per tower (0.78-1.37)
+      FRWat0:         {const: 1.0}
+      fraFreCon:      {base: fraFreCon}
+    grid:
+      mode: coordinate
+      axes:
+        - name: f1
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[1]': {default: -0.359741205, scale: axis}}
+        - name: f2
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[2]': {default: -0.055053608, scale: axis}}
+        - name: f3
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[3]': {default: 0.0023850432, scale: axis}}
+        - name: f4
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[4]': {default: 0.173926877, scale: axis}}
+        - name: f5
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[5]': {default: -0.0248473764, scale: axis}}
+        - name: f6
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[6]': {default: 0.00048430224, scale: axis}}
+        - name: f7
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[7]': {default: -0.005589849456, scale: axis}}
+        - name: f8
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[8]': {default: 0.0005770079712, scale: axis}}
+        - name: f9
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[9]': {default: -0.00001342427256, scale: axis}}
+        - name: f10
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[10]': {default: 2.84765801111111, scale: axis}}
+        - name: f11
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[11]': {default: -0.121765149, scale: axis}}
+        - name: f12
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[12]': {default: 0.0014599242, scale: axis}}
+        - name: f13
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[13]': {default: 1.680428651, scale: axis}}
+        - name: f14
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[14]': {default: -0.0166920786, scale: axis}}
+        - name: f15
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[15]': {default: -0.0007190532, scale: axis}}
+        - name: f16
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[16]': {default: -0.025485194448, scale: axis}}
+        - name: f17
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[17]': {default: 0.0000487491696, scale: axis}}
+        - name: f18
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[18]': {default: 0.00002719234152, scale: axis}}
+        - name: f19
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[19]': {default: -0.0653766255555556, scale: axis}}
+        - name: f20
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[20]': {default: -0.002278167, scale: axis}}
+        - name: f21
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[21]': {default: 0.0002500254, scale: axis}}
+        - name: f22
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[22]': {default: -0.0910565458, scale: axis}}
+        - name: f23
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[23]': {default: 0.00318176316, scale: axis}}
+        - name: f24
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[24]': {default: 0.000038621772, scale: axis}}
+        - name: f25
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[25]': {default: -0.0034285382352, scale: axis}}
+        - name: f26
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[26]': {default: 0.00000856589904, scale: axis}}
+        - name: f27
+          values: [0.9, 1.0, 1.1]
+          apply: {'f[27]': {default: -0.000001516821552, scale: axis}}

@@ -1,0 +1,14 @@
+site,family,devices,scored,raw_records,operating_records,operating_pct,median_test_error_pct
+A,chiller,7,3,735841,129031,17.5,5.34
+A,cooling_tower,7,4,735843,186874,25.4,13.85
+A,pump,17,10,1787025,412732,23.1,8.59
+A,heat_exchanger,3,2,315360,315360,100.0,8.65
+B,chiller,6,6,634386,78558,12.4,4.55
+B,cooling_tower,6,6,634386,185730,29.3,26.81
+B,pump,12,12,1268772,347575,27.4,20.71
+B,heat_exchanger,6,0,634386,634386,100.0,
+C,chiller,9,9,393543,139243,35.4,8.26
+C,pump,31,0,1355537,271869,20.1,
+D,chiller,3,2,52554,7340,14.0,21.19
+D,cooling_tower,3,2,52554,19779,37.6,18.14
+D,pump,2,2,35036,28655,81.8,12.91

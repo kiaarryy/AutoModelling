@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "AutoModelling: BMS-to-Modelica equipment modelling"
+message: "If you use this software, please cite the associated article and this software release."
+type: software
+license: MIT
+authors:
+  - family-names: Jin
+    given-names: Zhineng
+    affiliation: Hong Kong University of Science and Technology
+  - family-names: Wu
+    given-names: Si
+    affiliation: Hong Kong University of Science and Technology
+  - family-names: Wang
+    given-names: Zhe
+    affiliation: Hong Kong University of Science and Technology
+repository-code: https://github.com/kiaarryy/AutoModelling
+abstract: >-
+  Reproducible code and evidence for generating and independently evaluating
+  Modelica/FMU models of chillers, cooling towers, pumps, and heat exchangers
+  from building-management-system records under explicit semantic, readiness,
+  observability, selection, and provenance contracts.
+references:
+  - type: article
+    title: "AutoModelling: From BMS Operational Data to Validated Modelica Models for Chillers"
+    authors:
+      - family-names: Jin
+        given-names: Zhineng
+      - family-names: Wang
+        given-names: Zhe
+    journal: Energy
+    volume: 360
+    year: 2026
+    doi: 10.1016/j.energy.2026.141700
+

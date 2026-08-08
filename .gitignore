@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+outputs/
+release_artifacts/
+docs/_paper_extract/
+.venv/
+.env
+*.fmu
+dsfinal.txt
+dsin.txt
+dslog.txt
+dymosim
+dymosim.exe
+dymosim.*
+request
+status
+
+# rebuilt from deliverables/_recovery via scripts/repack_manuscript.py
+deliverables/manuscript/*.docx
+
+# manuscript build tree, rebuilt by scripts/repack_manuscript.py
+.msbuild/

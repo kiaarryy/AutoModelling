@@ -1,0 +1,41 @@
+# LBNL ChillerPlant -> canonical cooling tower (cell CT1).
+# One fan per cell: fan1_Hz = CT_FAN_SPD*50 (0-1 -> 0-50 Hz); fan2_Hz forced to 0
+# (scale 0) so the dual-fan contract is satisfied with a finite, honest column.
+# CT_FLOW is the cell's own water meter -> attributed_flow_m3_h directly.
+source_csv: ChillerPlant_30min.csv
+timestamp: Datetime
+columns:
+  power_W:                       # fan power, kW->W
+    source: CT_POW_1
+    scale: 1000.0
+    unit: W
+  tcwr_C:                        # water ENTERING tower (hot return)
+    source: CT_RW_TEMP_1
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  tcws_1_C:                      # water LEAVING tower (cold supply)
+    source: CT_SW_TEMP_1
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  twb_C:                         # outdoor wet-bulb (already DB/WB-corrected upstream)
+    source: OA_TEMP_WB
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  fan1_Hz:                       # single fan: 0-1 speed -> 0-50 Hz
+    source: CT_FAN_SPD_1
+    scale: 50.0
+    unit: Hz
+  fan2_Hz:                       # no second fan on this cell -> constant 0 Hz
+    source: CT_FAN_SPD_1
+    scale: 0.0
+    offset: 0.0
+    unit: Hz
+  attributed_flow_m3_h:          # cell's own condenser-water meter, GPM->m3/h
+    source: CT_FLOW_1
+    scale: 0.22712470
+    unit: m3/h
+  run_signal:
+    source: CT_STA_1

@@ -1,0 +1,49 @@
+# LBNL FDD ChillerPlant project config (third dataset; Goal-1 reusability proof).
+# Source: LBNL fault-detection chiller-plant testbed, fault-free baseline year
+# (2018, 1-min BMS). Real data stays external & read-only; referenced by path.
+# Imperial raw units (degF / GPM / kW / 0-1 speed) -> canonical SI via adapters.
+#
+# This plant has 3 water-cooled chillers, 3 single-fan cooling-tower cells, and
+# three pump groups (condenser CDWL, primary CHW CWL_PRI, secondary CHW CWL_SEC).
+# Only the secondary CHW pumps carry a VFD speed signal, so they are the
+# modellable pump; the constant-speed primary/condenser pumps have no speed
+# sensor and would gate (documented in the report), so are omitted here.
+#
+# Data is decimated from 1-min to 30-min (ChillerPlant_30min.csv) so the FMU
+# full-period drive stays tractable; equipment models are steady-state so 30-min
+# snapshots are ample (thousands of operating points per device).
+dataset: lbnl_chiller_plant
+data_root: ${AUTOFMU_DATA_ROOT}
+adapters_dir: adapters
+outputs_dir: ../../outputs
+# Reuse the SAME device-type Buildings FMU contracts as Site A / Tencent. The
+# FMUs are generic; parameters are fitted per device. Cross-dataset reuse.
+fmu_config_dir: ../fmu
+
+thresholds:
+  run_on: 0.5
+  min_full_physical_rows: 500
+  min_nominal_rows: 200
+
+devices:
+  # Chiller No.1: full metering (power + 4 temps + chw/cw flow) -> full_physical.
+  # Condenser temp labels are from the chiller's own perspective in this dataset:
+  #   CHL_SWCD = condenser water LEAVING the chiller (hot, -> tower)  = tcwr_C
+  #   CHL_RWCD = condenser water RETURNED to the chiller (cold, <- tower) = tcws_C
+  - {id: CHI1, type: chiller, adapter: chiller_chi1.yaml}
+
+  # Cooling-tower cell No.1: one fan per cell (fan2 mapped to 0), own flow meter
+  # (CT_FLOW) -> attributed_flow directly; heat rejection + fan count reconstructed.
+  - id: CT1
+    type: cooling_tower
+    adapter: cooling_tower_ct1.yaml
+    reconstruct:
+      # logical per-timestep running-fan count (one fan here): replaces hard x2
+      fans_on_count: {method: active_count, signals: [fan1_Hz, fan2_Hz], threshold: 5.0}
+      # measurement-based heat rejection from the cell's own flow + range
+      heat_rejection_W: {method: heat_rate, flow: attributed_flow_m3_h, t_hot: tcwr_C, t_cold: tcws_1_C}
+
+  # Secondary chilled-water pump No.1: VFD (power + 0-1 speed) -> full_physical.
+  # No dedicated per-pump flow meter (shared secondary header), so the speed-only
+  # empirical-power forms (affinity / speed-poly) compete; flow form is dropped.
+  - {id: SCHWP1, type: pump, adapter: pump_schwp1.yaml}

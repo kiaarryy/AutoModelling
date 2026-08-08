@@ -1,0 +1,6 @@
+source_csv: pump.csv
+timestamp: timestamp
+columns:
+  power_W: {source: power_W}
+  speed_Hz: {source: speed_Hz}
+  run_signal: {source: run_signal}

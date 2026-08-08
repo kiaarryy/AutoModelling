@@ -1,0 +1,7 @@
+source_csv: hex.csv
+timestamp: timestamp
+columns:
+  tchws_C: {source: tchws_C}
+  tchwr_C: {source: tchwr_C}
+  tcws_C: {source: tcws_C}
+  tcwr_C: {source: tcwr_C}

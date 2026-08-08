@@ -1,0 +1,71 @@
+device,family,order,name,category,kind,removed,remaining,retained_pct
+CT_01,cooling_tower,0,raw records,source,,0,105121,100.0
+CT_01,cooling_tower,1,entering water temperature present,missing_channel,gate,3680,101441,96.49927226719684
+CT_01,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,9993,91448,86.99308416015829
+CT_01,cooling_tower,3,attributed flow present,missing_channel,gate,0,91448,86.99308416015829
+CT_01,cooling_tower,4,active fan count present,missing_channel,gate,54654,36794,35.0015696197715
+CT_01,cooling_tower,5,leaving water temperature present,missing_reference,gate,0,36794,35.0015696197715
+CT_01,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,12,36782,34.99015420325149
+CT_01,cooling_tower,7,fans running,operating_state,gate,0,36782,34.99015420325149
+CT_01,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,3,36779,34.98730034912149
+CT_01,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,0,36779,34.98730034912149
+CT_02,cooling_tower,0,raw records,source,,0,105121,100.0
+CT_02,cooling_tower,1,entering water temperature present,missing_channel,gate,11898,93223,88.68161452040981
+CT_02,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,1776,91447,86.99213287544829
+CT_02,cooling_tower,3,attributed flow present,missing_channel,gate,0,91447,86.99213287544829
+CT_02,cooling_tower,4,active fan count present,missing_channel,gate,89081,2366,2.250739623862026
+CT_02,cooling_tower,5,leaving water temperature present,missing_reference,gate,0,2366,2.250739623862026
+CT_02,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,918,1448,1.3774602600812398
+CT_02,cooling_tower,7,fans running,operating_state,gate,0,1448,1.3774602600812398
+CT_02,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,0,1448,1.3774602600812398
+CT_02,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,5,1443,1.3727038365312354
+CT_03,cooling_tower,0,raw records,source,,0,105121,100.0
+CT_03,cooling_tower,1,entering water temperature present,missing_channel,gate,13801,91320,86.87131971727818
+CT_03,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,0,91320,86.87131971727818
+CT_03,cooling_tower,3,attributed flow present,missing_channel,gate,0,91320,86.87131971727818
+CT_03,cooling_tower,4,active fan count present,missing_channel,gate,44267,47053,44.76079945967029
+CT_03,cooling_tower,5,leaving water temperature present,missing_reference,gate,0,47053,44.76079945967029
+CT_03,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,4861,42192,40.13660448435612
+CT_03,cooling_tower,7,fans running,operating_state,gate,0,42192,40.13660448435612
+CT_03,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,2,42190,40.13470191493612
+CT_03,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,314,41876,39.835998515995854
+CT_04,cooling_tower,0,raw records,source,,0,105120,100.0
+CT_04,cooling_tower,1,entering water temperature present,missing_channel,gate,12381,92739,88.22203196347031
+CT_04,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,2866,89873,85.49562404870625
+CT_04,cooling_tower,3,attributed flow present,missing_channel,gate,0,89873,85.49562404870625
+CT_04,cooling_tower,4,active fan count present,missing_channel,gate,86350,3523,3.351407914764079
+CT_04,cooling_tower,5,leaving water temperature present,missing_reference,gate,1,3522,3.3504566210045663
+CT_04,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,3,3519,3.3476027397260273
+CT_04,cooling_tower,7,fans running,operating_state,gate,0,3519,3.3476027397260273
+CT_04,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,0,3519,3.3476027397260273
+CT_04,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,4,3515,3.343797564687976
+CT_05,cooling_tower,0,raw records,source,,0,105120,100.0
+CT_05,cooling_tower,1,entering water temperature present,missing_channel,gate,12370,92750,88.23249619482496
+CT_05,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,2870,89880,85.50228310502283
+CT_05,cooling_tower,3,attributed flow present,missing_channel,gate,0,89880,85.50228310502283
+CT_05,cooling_tower,4,active fan count present,missing_channel,gate,39211,50669,48.201103500761036
+CT_05,cooling_tower,5,leaving water temperature present,missing_reference,gate,0,50669,48.201103500761036
+CT_05,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,40147,10522,10.00951293759513
+CT_05,cooling_tower,7,fans running,operating_state,gate,0,10522,10.00951293759513
+CT_05,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,1,10521,10.008561643835616
+CT_05,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,2,10519,10.006659056316591
+CT_06,cooling_tower,0,raw records,source,,0,105120,100.0
+CT_06,cooling_tower,1,entering water temperature present,missing_channel,gate,11508,93612,89.05251141552512
+CT_06,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,6769,86843,82.61320395738204
+CT_06,cooling_tower,3,attributed flow present,missing_channel,gate,0,86843,82.61320395738204
+CT_06,cooling_tower,4,active fan count present,missing_channel,gate,81438,5405,5.141742770167427
+CT_06,cooling_tower,5,leaving water temperature present,missing_reference,gate,295,5110,4.861111111111111
+CT_06,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,0,5110,4.861111111111111
+CT_06,cooling_tower,7,fans running,operating_state,gate,0,5110,4.861111111111111
+CT_06,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,0,5110,4.861111111111111
+CT_06,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,0,5110,4.861111111111111
+CT_07,cooling_tower,0,raw records,source,,0,105120,100.0
+CT_07,cooling_tower,1,entering water temperature present,missing_channel,gate,10241,94879,90.257800608828
+CT_07,cooling_tower,2,wet-bulb temperature present,missing_channel,gate,8592,86287,82.08428462709284
+CT_07,cooling_tower,3,attributed flow present,missing_channel,gate,0,86287,82.08428462709284
+CT_07,cooling_tower,4,active fan count present,missing_channel,gate,56974,29313,27.88527397260274
+CT_07,cooling_tower,5,leaving water temperature present,missing_reference,gate,488,28825,27.421042617960428
+CT_07,cooling_tower,6,total water flow above 1 kg/s,operating_state,gate,2,28823,27.4191400304414
+CT_07,cooling_tower,7,fans running,operating_state,gate,0,28823,27.4191400304414
+CT_07,cooling_tower,8,leaving water hotter than entering (range <= 0),physically_impossible,quarantine,0,28823,27.4191400304414
+CT_07,cooling_tower,9,leaving water at or below wet bulb (approach <= 0),physically_impossible,quarantine,2,28821,27.417237442922374

@@ -1,0 +1,5 @@
+family,inventory,accepted,refused,setup_h,accepted_marginal_h,refused_marginal_h,full_inventory_h
+Chiller,7,3,4,4.1,5.9,2.0,29.8
+Cooling tower,7,4,3,4.75,6.72,2.17,38.1
+Heat exchanger,3,2,1,4.0,4.77,1.92,15.4
+Pump,17,10,7,3.33,4.02,1.75,55.8

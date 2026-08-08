@@ -1,0 +1,11 @@
+{
+  "title": "AutoModelling: BMS-to-Modelica equipment modelling",
+  "description": "Code, configurations, and derived evidence for reproducible device-level HVAC AutoModelling.",
+  "license": "MIT",
+  "creators": [
+    {"name": "Jin, Zhineng"},
+    {"name": "Wu, Si"},
+    {"name": "Wang, Zhe"}
+  ],
+  "keywords": ["Modelica", "FMU", "building management system", "HVAC", "digital twin"]
+}

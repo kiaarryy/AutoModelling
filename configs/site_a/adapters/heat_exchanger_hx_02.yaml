@@ -1,0 +1,23 @@
+source_csv: heat_exchanger/HX_02.csv
+timestamp: DateTime
+# HX_02 carries the same thermal interface as HX_01, but under a different point
+# naming convention -- CDW-/CHW- rather than CDWS-/CHWS-, and a 2E01 prefix.
+# The adapter was previously an empty map, so the device returned no rows and no
+# reason, even though the manuscript validates it (PlateEffectivenessNTU,
+# 6.54% heat CVRMSE). Contrast HX_03, which genuinely carries no temperature
+# channels at all.
+columns:
+  tchws_C:
+    source: HX-2E01-CHW-SWTS.Present Value (°C)
+  tchwr_C:
+    source: HX-2E01-CHW-RWTS.Present Value (°C)
+  tcws_C:
+    source: HX-2E01-CDW-SWTS.Present Value (°C)
+  tcwr_C:
+    source: HX-2E01-CDW-RWTS.Present Value (°C)
+  chw_flow_m3_h:
+    source: HX-2E01-CHW-WFM.Present Value (lps)
+    scale: 3.6
+  cw_flow_m3_h:
+    source: HX-2E01-CDW-WFM.Present Value (lps)
+    scale: 3.6

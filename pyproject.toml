@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autofmu"
+version = "0.1.0"
+description = "Reproducible BMS-to-Modelica AutoModelling for HVAC equipment"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+  "numpy>=1.20",
+  "pandas>=1.3",
+  "PyYAML>=5.4",
+  # Not optional: devices/york27_fit.py imports scipy.optimize at module level
+  # for the constrained closed-loop identification, and chiller_fmu.py uses it
+  # to refine curve coefficients. Both are core paths, not FMU execution. It sat
+  # in the fmu/dev extras until CI installed the base package and the
+  # cooling-tower test failed on ModuleNotFoundError -- invisible in any
+  # environment that had already installed an extra.
+  "scipy>=1.7",
+]
+
+[project.optional-dependencies]
+fmu = [
+  "fmpy>=0.3.21",
+  "openpyxl>=3.0",
+]
+excel = ["openpyxl>=3.0"]
+dev = [
+  "pytest>=7.0",
+  "fmpy>=0.3.21",
+  "openpyxl>=3.0",
+]
+
+[project.scripts]
+autofmu = "autofmu.cli:entrypoint"
+
+[tool.setuptools.packages.find]
+where = ["src"]

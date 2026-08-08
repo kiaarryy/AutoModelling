@@ -1,0 +1,367 @@
+dataset: site_a
+data_root: ${AUTOFMU_DATA_ROOT}
+adapters_dir: adapters
+outputs_dir: ../../outputs
+fmu_config_dir: ../fmu
+thresholds:
+  run_on: 0.5
+  min_full_physical_rows: 500
+  min_nominal_rows: 200
+  min_calibration_rows: 200
+  validation_fold: 3
+  validation_split: interleaved
+  # M-09: buffered, block-interleaved identification / selection / test split.
+  # Presence of this block switches the device engines off the legacy contiguous
+  # 60/20/20 chronological split, whose test segment was always the tail of the
+  # record -- a different season from training, with no gap in between.
+  # Devices whose record cannot fill all three segments are reported as
+  # degraded rather than given a test score.
+  split:
+    mode: proportional
+    buffer_hours: 72
+    n_blocks: 12
+    block_pattern: [identification, test, selection, test]
+    min_identification_rows: 288
+    min_selection_rows: 288
+    min_test_rows: 2016
+devices:
+- id: CH_01
+  type: chiller
+  adapter: chiller_ch_01.yaml
+- id: CH_02
+  type: chiller
+  adapter: chiller_ch_02.yaml
+- id: CH_03
+  type: chiller
+  adapter: chiller_ch_03.yaml
+- id: CH_04
+  type: chiller
+  adapter: chiller_ch_04.yaml
+- id: CH_05
+  type: chiller
+  adapter: chiller_ch_05.yaml
+- id: CH_06
+  type: chiller
+  adapter: chiller_ch_06.yaml
+- id: CH_07
+  type: chiller
+  adapter: chiller_ch_07.yaml
+- id: CT_01
+  type: cooling_tower
+  adapter: cooling_tower_ct_01.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_01, HX_01]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      - fan2_Hz
+      threshold: 5.0
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_02
+  type: cooling_tower
+  adapter: cooling_tower_ct_02.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_02]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      - fan2_Hz
+      threshold: 5.0
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_03
+  type: cooling_tower
+  adapter: cooling_tower_ct_03.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_03]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      - fan2_Hz
+      threshold: 5.0
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_04
+  type: cooling_tower
+  adapter: cooling_tower_ct_04.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_04, HX_02]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      - fan2_Hz
+      threshold: 5.0
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_05
+  type: cooling_tower
+  adapter: cooling_tower_ct_05.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_05]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      - fan2_Hz
+      threshold: 5.0
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_06
+  type: cooling_tower
+  adapter: cooling_tower_ct_06.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_06, HX_03]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      threshold: 5.0
+      # single VSD commands both cells on this tower
+      per_signal: 2
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CT_07
+  type: cooling_tower
+  adapter: cooling_tower_ct_07.yaml
+  flow_attribution:
+    # Site A hydraulic pairing: this tower is fed only by these
+    # devices, so the flow is theirs by topology and needs no
+    # solo-run argument (see pipeline/attribute.py).
+    source_devices: [CH_07]
+    source_type_fallback: chiller
+    source_column: cw_flow_m3_h
+  join:
+  - source_csv: WET_BALL/OUTDOOR/Local_IO.RF1-OUTDOOR_202405_202504_with_Twb.csv
+    timestamp: DateTime
+    column: Twb (°C)
+    as: twb_C
+  reconstruct:
+    fans_on_count:
+      method: active_count
+      signals:
+      - fan1_Hz
+      threshold: 5.0
+      # single VSD commands both cells on this tower
+      per_signal: 2
+    heat_rejection_W:
+      method: heat_rate
+      flow: attributed_flow_m3_h
+      t_hot: tcwr_C
+      t_cold: tcws_1_C
+- id: CDWP_01
+  type: pump
+  adapter: pump_cdwp_01.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_02
+  type: pump
+  adapter: pump_cdwp_02.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_03
+  type: pump
+  adapter: pump_cdwp_03.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_04
+  type: pump
+  adapter: pump_cdwp_04.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_05
+  type: pump
+  adapter: pump_cdwp_05.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_06
+  type: pump
+  adapter: pump_cdwp_06.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CDWP_07
+  type: pump
+  adapter: pump_cdwp_07.yaml
+  group: cdwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: CHWP_01
+  type: pump
+  adapter: pump_chwp_01.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_02
+  type: pump
+  adapter: pump_chwp_02.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_03
+  type: pump
+  adapter: pump_chwp_03.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_04
+  type: pump
+  adapter: pump_chwp_04.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_05
+  type: pump
+  adapter: pump_chwp_05.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_06
+  type: pump
+  adapter: pump_chwp_06.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: CHWP_07
+  type: pump
+  adapter: pump_chwp_07.yaml
+  group: chwp
+  flow_attribution:
+    source_type: chiller
+    source_column: chw_flow_m3_h
+- id: HXCWP_01
+  type: pump
+  adapter: pump_hxcwp_01.yaml
+  group: hxcwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: HXCWP_02
+  type: pump
+  adapter: pump_hxcwp_02.yaml
+  group: hxcwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: HXCWP_03
+  type: pump
+  adapter: pump_hxcwp_03.yaml
+  group: hxcwp
+  flow_attribution:
+    source_type: chiller
+    source_column: cw_flow_m3_h
+- id: HX_01
+  type: heat_exchanger
+  adapter: heat_exchanger_hx_01.yaml
+- id: HX_02
+  type: heat_exchanger
+  adapter: heat_exchanger_hx_02.yaml
+- id: HX_03
+  type: heat_exchanger
+  adapter: heat_exchanger_hx_03.yaml

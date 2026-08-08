@@ -1,0 +1,80 @@
+# FMU interface contract: heat exchanger (Buildings ConstantEffectiveness /
+# PlateHeatExchangerEffectivenessNTU). Drive mode: data_table.
+#
+# Validation targets the UNCONTROLLED condenser-side outlet T2Out and Q (T1Out is
+# the controlled chilled-water side -> reported, not used as a model-error
+# judge). autofmu fits eps (Constant) or UA/flow nominals (Plate) and injects
+# them; the FMU computes physics.
+#
+# Each candidate is a model *type*: its search space (`grid`) + fixed start values
+# (`static_start_values`, from the estimated nominals) are declared here and consumed
+# generically by autofmu.devices.model_types. Add a type (e.g. DryCoilEffectivenessNTU)
+# = a candidate block + its exported FMU; see docs/EXTENSIBLE_TYPES.md.
+device_type: heat_exchanger
+drive: data_table
+
+fmu_root: ${AUTOFMU_FMU_ROOT}
+
+score_variables: [t2out, cooling]
+report_only: [t1out]
+
+# enabled_candidates: [ConstantEffectiveness, PlateEffectivenessNTU]   # default: all
+
+candidates:
+  - name: ConstantEffectiveness
+    fmu: outputs/heat_exchanger/modelica_interface/fmu/SiteAHXConstantEffectiveness.fmu
+    table_param: table_path
+    output_interval: 300
+    fit_strategy: grid_search
+    outputs: [T1Out_m, T1Out_s, T2Out_m, T2Out_s, Q_m, Q_s, eps_m, eps_s, dT_lm_m, dT_lm_s]
+    compare:
+      - {name: t1out,   measured: T1Out_m, simulated: T1Out_s}
+      - {name: t2out,   measured: T2Out_m, simulated: T2Out_s}
+      - {name: cooling, measured: Q_m,     simulated: Q_s}
+    tunable_parameters:
+      effectiveness: [eps]
+      nominal: [m1_flow_nominal, m2_flow_nominal]
+    static_start_values:
+      m1_flow_nominal: {base: m1_flow_nominal}
+      m2_flow_nominal: {base: m2_flow_nominal}
+      dp1_nominal: {const: 0.0}
+      dp2_nominal: {const: 0.0}
+    grid:
+      axes:
+        - name: eps_scale
+          values: [0.75, 0.9, 1.0, 1.1, 1.25]
+          apply: {eps: {base: eps_nominal, scale: axis, floor: 0.05, ceil: 0.98}}
+
+  - name: PlateEffectivenessNTU
+    fmu: outputs/heat_exchanger/modelica_interface/fmu/SiteAHXPlateEffectivenessNTU.fmu
+    table_param: table_path
+    output_interval: 300
+    fit_strategy: grid_search
+    outputs: [T1Out_m, T1Out_s, T2Out_m, T2Out_s, Q_m, Q_s, eps_m, eps_s, dT_lm_m, dT_lm_s]
+    compare:
+      - {name: t1out,   measured: T1Out_m, simulated: T1Out_s}
+      - {name: t2out,   measured: T2Out_m, simulated: T2Out_s}
+      - {name: cooling, measured: Q_m,     simulated: Q_s}
+    tunable_parameters:
+      ntu: [Q_flow_nominal, n1, n2, r_nominal]
+      nominal: [m1_flow_nominal, m2_flow_nominal]
+    static_start_values:
+      T_a1_nominal: {base: T_a1_nominal}
+      T_b1_nominal: {base: T_b1_nominal}
+      T_a2_nominal: {base: T_a2_nominal}
+      T_b2_nominal: {base: T_b2_nominal}
+      dp1_nominal: {const: 0.0}
+      dp2_nominal: {const: 0.0}
+      n1: {const: 0.8}
+      n2: {const: 0.8}
+      r_nominal: {const: 1.0}
+    grid:
+      axes:
+        - name: q_scale
+          values: [0.7, 1.0, 1.3]
+          apply: {Q_flow_nominal: {base: Q_flow_nominal, scale: axis}}
+        - name: flow_scale
+          values: [0.85, 1.0, 1.15]
+          apply:
+            m1_flow_nominal: {base: m1_flow_nominal, scale: axis}
+            m2_flow_nominal: {base: m2_flow_nominal, scale: axis}

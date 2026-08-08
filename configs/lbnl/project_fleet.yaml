@@ -1,0 +1,40 @@
+# LBNL FDD ChillerPlant -- full modellable fleet (3 chillers, 3 cooling-tower
+# cells, 2 secondary chilled-water pumps). Same config-only contract as
+# project.yaml; see that file for dataset notes and the condenser-temp labelling.
+dataset: lbnl_chiller_plant
+data_root: ${AUTOFMU_DATA_ROOT}
+adapters_dir: adapters
+outputs_dir: ../../outputs
+fmu_config_dir: ../fmu
+
+thresholds:
+  run_on: 0.5
+  min_full_physical_rows: 500
+  min_nominal_rows: 200
+
+devices:
+  - {id: CHI1, type: chiller, adapter: chiller_chi1.yaml}
+  - {id: CHI2, type: chiller, adapter: chiller_chi2.yaml}
+  - {id: CHI3, type: chiller, adapter: chiller_chi3.yaml}
+
+  - id: CT1
+    type: cooling_tower
+    adapter: cooling_tower_ct1.yaml
+    reconstruct:
+      fans_on_count: {method: active_count, signals: [fan1_Hz, fan2_Hz], threshold: 5.0}
+      heat_rejection_W: {method: heat_rate, flow: attributed_flow_m3_h, t_hot: tcwr_C, t_cold: tcws_1_C}
+  - id: CT2
+    type: cooling_tower
+    adapter: cooling_tower_ct2.yaml
+    reconstruct:
+      fans_on_count: {method: active_count, signals: [fan1_Hz, fan2_Hz], threshold: 5.0}
+      heat_rejection_W: {method: heat_rate, flow: attributed_flow_m3_h, t_hot: tcwr_C, t_cold: tcws_1_C}
+  - id: CT3
+    type: cooling_tower
+    adapter: cooling_tower_ct3.yaml
+    reconstruct:
+      fans_on_count: {method: active_count, signals: [fan1_Hz, fan2_Hz], threshold: 5.0}
+      heat_rejection_W: {method: heat_rate, flow: attributed_flow_m3_h, t_hot: tcwr_C, t_cold: tcws_1_C}
+
+  - {id: SCHWP1, type: pump, adapter: pump_schwp1.yaml}
+  - {id: SCHWP2, type: pump, adapter: pump_schwp2.yaml}

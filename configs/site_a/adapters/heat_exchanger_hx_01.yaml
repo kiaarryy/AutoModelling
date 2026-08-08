@@ -1,0 +1,17 @@
+source_csv: heat_exchanger/HX_01.csv
+timestamp: DateTime
+columns:
+  tchws_C:
+    source: HX-1E01-CHWS-SWTS.Present Value (°C)
+  tchwr_C:
+    source: HX-1E01-CHWS-RWTS.Present Value (°C)
+  tcws_C:
+    source: HX-1E01-CDWS-SWTS.Present Value (°C)
+  tcwr_C:
+    source: HX-1E01-CDWS-RWTS.Present Value (°C)
+  chw_flow_m3_h:
+    source: HX-1E01-CHWS-WFM.Present Value (lps)
+    scale: 3.6
+  cw_flow_m3_h:
+    source: HX-1E01-CDWS-WFM.Present Value (lps)
+    scale: 3.6

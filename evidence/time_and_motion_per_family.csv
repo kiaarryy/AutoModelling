@@ -1,0 +1,5 @@
+family,setup_h,device_1,device_1_h,device_2,device_2_h,accepted_marginal_h,blocked_device,blocked_marginal_h,learning_effect
+Chiller,4.1,CH_01,6.583,CH_03,5.217,5.9,CH_05,2.0,0.208
+Cooling tower,4.75,CT_01,7.917,CT_05,5.517,6.717,CT_02,2.167,0.303
+Heat exchanger,4.0,HX_01,5.3,HX_02,4.233,4.767,HX_03,1.917,0.201
+Pump,3.333,CDWP_03,4.5,CHWP_01,3.533,4.017,CDWP_02,1.75,0.215

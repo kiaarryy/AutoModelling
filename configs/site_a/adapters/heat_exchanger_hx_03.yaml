@@ -1,0 +1,7 @@
+source_csv: heat_exchanger/HX_03.csv
+timestamp: DateTime
+# HX_03 carries pressures, flows and a building-load point but no water
+# temperature channels on either side, so no thermal model can be fitted
+# or validated. Verified against the source CSV; the empty map is the
+# honest answer, and the manuscript reports this device as blocked.
+columns: {}

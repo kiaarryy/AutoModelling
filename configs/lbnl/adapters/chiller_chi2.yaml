@@ -1,0 +1,43 @@
+# LBNL ChillerPlant -> canonical chiller (device CHI2).
+# Raw units: degF, GPM, kW, 0-1 speed. degF->degC: C = F*5/9 - 32*5/9.
+source_csv: ChillerPlant_30min.csv
+timestamp: Datetime
+columns:
+  power_W:
+    source: CHL_POW_2
+    scale: 1000.0
+    unit: W
+  tchws_C:                       # chilled-water SUPPLY (cold, leaving evaporator)
+    source: CHL_SW_TEMP_2
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  tchwr_C:                       # chilled-water RETURN (warm, entering evaporator)
+    source: CHL_RW_TEMP_2
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  tcws_C:                        # condenser entering (cold, from tower)  == CHL_RWCD
+    source: CHL_RWCD_TEMP_2
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  tcwr_C:                        # condenser leaving (hot, to tower)      == CHL_SWCD
+    source: CHL_SWCD_TEMP_2
+    scale: 0.55555556
+    offset: -17.77777778
+    unit: degC
+  chw_flow_m3_h:                 # evaporator (chilled water) flow, GPM->m3/h
+    source: CHL_CW_FLOW_2
+    scale: 0.22712470
+    unit: m3/h
+  cw_flow_m3_h:                  # condenser flow, GPM->m3/h
+    source: CHL_CD_FLOW_2
+    scale: 0.22712470
+    unit: m3/h
+  run_signal:
+    source: CHL_STA_2
+  load_pct:                      # compressor speed command 0-1 -> %
+    source: CHL_COMP_SPD_CTRL_2
+    scale: 100.0
+    unit: pct

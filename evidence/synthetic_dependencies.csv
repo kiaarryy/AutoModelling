@@ -1,0 +1,115 @@
+site,device,equipment,target,driver,form,n,max_residual_pct_of_range,inlier_fraction,n_outlier_rows,synthetic,duplicate,relation,is_validation_target
+site_a,cooling_tower_ct_01,cooling_tower,fan1_Hz,run_signal,identity,91318,0.0,1.0,0,True,True,fan1_Hz is a copy of run_signal,False
+site_a,cooling_tower_ct_01,cooling_tower,run_signal,fan1_Hz,identity,91318,0.0,1.0,0,True,True,run_signal is a copy of fan1_Hz,False
+site_a,cooling_tower_ct_02,cooling_tower,fan1_Hz,run_signal,identity,101316,0.0,1.0,0,True,True,fan1_Hz is a copy of run_signal,False
+site_a,cooling_tower_ct_02,cooling_tower,run_signal,fan1_Hz,identity,101316,0.0,1.0,0,True,True,run_signal is a copy of fan1_Hz,False
+site_a,cooling_tower_ct_03,cooling_tower,fan1_Hz,run_signal,identity,92954,0.0,1.0,0,True,True,fan1_Hz is a copy of run_signal,False
+site_a,cooling_tower_ct_03,cooling_tower,run_signal,fan1_Hz,identity,92954,0.0,1.0,0,True,True,run_signal is a copy of fan1_Hz,False
+site_a,cooling_tower_ct_04,cooling_tower,fan1_Hz,run_signal,identity,94373,0.0,1.0,0,True,True,fan1_Hz is a copy of run_signal,False
+site_a,cooling_tower_ct_04,cooling_tower,run_signal,fan1_Hz,identity,94373,0.0,1.0,0,True,True,run_signal is a copy of fan1_Hz,False
+site_a,cooling_tower_ct_05,cooling_tower,fan1_Hz,run_signal,identity,94444,0.0,1.0,0,True,True,fan1_Hz is a copy of run_signal,False
+site_a,cooling_tower_ct_05,cooling_tower,run_signal,fan1_Hz,identity,94444,0.0,1.0,0,True,True,run_signal is a copy of fan1_Hz,False
+site_a,pump_cdwp_01,pump,speed_Hz,run_signal,identity,29553,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_cdwp_01,pump,run_signal,speed_Hz,identity,29553,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_cdwp_02,pump,speed_Hz,run_signal,identity,2372,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_cdwp_02,pump,run_signal,speed_Hz,identity,2372,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_cdwp_03,pump,speed_Hz,run_signal,identity,51494,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_cdwp_03,pump,run_signal,speed_Hz,identity,51494,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_chwp_01,pump,speed_Hz,run_signal,identity,73065,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_chwp_01,pump,run_signal,speed_Hz,identity,73065,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_chwp_02,pump,speed_Hz,run_signal,identity,2396,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_chwp_02,pump,run_signal,speed_Hz,identity,2396,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_chwp_03,pump,speed_Hz,run_signal,identity,60319,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_chwp_03,pump,run_signal,speed_Hz,identity,60319,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_hxcwp_01,pump,speed_Hz,run_signal,identity,31861,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_hxcwp_01,pump,run_signal,speed_Hz,identity,31861,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_hxcwp_02,pump,speed_Hz,run_signal,identity,29052,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_hxcwp_02,pump,run_signal,speed_Hz,identity,29052,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+site_a,pump_hxcwp_03,pump,speed_Hz,run_signal,identity,2424,0.0,1.0,0,True,True,speed_Hz is a copy of run_signal,False
+site_a,pump_hxcwp_03,pump,run_signal,speed_Hz,identity,2424,0.0,1.0,0,True,True,run_signal is a copy of speed_Hz,False
+hkust,chiller_ch_08,chiller,chw_flow_m3_h,cw_flow_m3_h,proportional,1030,4.0544521298721844e-14,1.0,0,True,False,chw_flow_m3_h = 0.830569*cw_flow_m3_h,False
+hkust,chiller_ch_08,chiller,cw_flow_m3_h,chw_flow_m3_h,proportional,1030,2.694000893877157e-13,1.0,0,True,False,cw_flow_m3_h = 1.20399*chw_flow_m3_h,False
+hkust,cooling_tower_ct1,cooling_tower,fan1_Hz,fan2_Hz,identity,31569,0.0,1.0,0,True,True,fan1_Hz is a copy of fan2_Hz,False
+hkust,cooling_tower_ct1,cooling_tower,fan2_Hz,fan1_Hz,identity,31569,0.0,1.0,0,True,True,fan2_Hz is a copy of fan1_Hz,False
+hkust,cooling_tower_ct1,cooling_tower,attributed_flow_m3_h,fan1_Hz,proportional,31569,0.0261301280376273,0.9998416167759512,5,True,False,attributed_flow_m3_h = 102.6*fan1_Hz,False
+hkust,cooling_tower_ct1,cooling_tower,attributed_flow_m3_h,fan2_Hz,proportional,31569,0.0261301280376273,0.9998416167759512,5,True,False,attributed_flow_m3_h = 102.6*fan2_Hz,False
+hkust,cooling_tower_ct2,cooling_tower,power_W,fan1_Hz,proportional,13106,7.531584062196265,0.9987028841751868,17,True,False,power_W = 754.6*fan1_Hz,True
+hkust,cooling_tower_ct2,cooling_tower,power_W,fan2_Hz,proportional,13106,7.531584062196265,0.9987028841751868,17,True,False,power_W = 754.6*fan2_Hz,True
+hkust,cooling_tower_ct2,cooling_tower,power_W,attributed_flow_m3_h,proportional,13106,5.785283022144255e-14,1.0,0,True,False,power_W = 66.6667*attributed_flow_m3_h,True
+hkust,cooling_tower_ct2,cooling_tower,fan1_Hz,fan2_Hz,identity,13107,0.0,1.0,0,True,True,fan1_Hz is a copy of fan2_Hz,False
+hkust,cooling_tower_ct2,cooling_tower,fan1_Hz,power_W,proportional,13106,7.531584062196293,0.9987028841751868,17,True,False,fan1_Hz = 0.00132521*power_W,False
+hkust,cooling_tower_ct2,cooling_tower,fan2_Hz,fan1_Hz,identity,13107,0.0,1.0,0,True,True,fan2_Hz is a copy of fan1_Hz,False
+hkust,cooling_tower_ct2,cooling_tower,fan2_Hz,power_W,proportional,13106,7.531584062196293,0.9987028841751868,17,True,False,fan2_Hz = 0.00132521*power_W,False
+hkust,cooling_tower_ct2,cooling_tower,attributed_flow_m3_h,power_W,proportional,13106,4.0175576542668455e-14,1.0,0,True,False,attributed_flow_m3_h = 0.015*power_W,False
+hkust,cooling_tower_ct2,cooling_tower,attributed_flow_m3_h,fan1_Hz,proportional,13106,7.531584062196285,0.9987028841751868,17,True,False,attributed_flow_m3_h = 11.319*fan1_Hz,False
+hkust,cooling_tower_ct2,cooling_tower,attributed_flow_m3_h,fan2_Hz,proportional,13106,7.531584062196285,0.9987028841751868,17,True,False,attributed_flow_m3_h = 11.319*fan2_Hz,False
+hkust,cooling_tower_ct3,cooling_tower,fan1_Hz,fan2_Hz,identity,31826,0.0,1.0,0,True,True,fan1_Hz is a copy of fan2_Hz,False
+hkust,cooling_tower_ct3,cooling_tower,fan2_Hz,fan1_Hz,identity,31826,0.0,1.0,0,True,True,fan2_Hz is a copy of fan1_Hz,False
+hkust,cooling_tower_ct3,cooling_tower,attributed_flow_m3_h,fan1_Hz,proportional,31826,1.757160428747142,0.9990573744737008,30,True,False,attributed_flow_m3_h = 11.379*fan1_Hz,False
+hkust,cooling_tower_ct3,cooling_tower,attributed_flow_m3_h,fan2_Hz,proportional,31826,1.7571604287471458,0.9990573744737008,30,True,False,attributed_flow_m3_h = 11.379*fan2_Hz,False
+hkust,cooling_tower_ct4,cooling_tower,fan1_Hz,fan2_Hz,identity,29136,0.0,1.0,0,True,True,fan1_Hz is a copy of fan2_Hz,False
+hkust,cooling_tower_ct4,cooling_tower,fan2_Hz,fan1_Hz,identity,29136,0.0,1.0,0,True,True,fan2_Hz is a copy of fan1_Hz,False
+hkust,cooling_tower_ct4,cooling_tower,attributed_flow_m3_h,fan1_Hz,proportional,29136,0.0263296471827277,0.999176276771005,24,True,False,attributed_flow_m3_h = 36.24*fan1_Hz,False
+hkust,cooling_tower_ct4,cooling_tower,attributed_flow_m3_h,fan2_Hz,proportional,29136,0.0263296471827277,0.999176276771005,24,True,False,attributed_flow_m3_h = 36.24*fan2_Hz,False
+hkust,pump_ct1,pump,speed_Hz,flow_m3_h,proportional,31569,0.0261369576581286,0.9998416167759512,5,True,False,speed_Hz = 0.00974659*flow_m3_h,False
+hkust,pump_ct1,pump,flow_m3_h,speed_Hz,proportional,31569,0.0261301280376273,0.9998416167759512,5,True,False,flow_m3_h = 102.6*speed_Hz,False
+hkust,pump_ct2,pump,power_W,speed_Hz,proportional,13106,7.531584062196265,0.9987028841751868,17,True,False,power_W = 754.6*speed_Hz,True
+hkust,pump_ct2,pump,power_W,flow_m3_h,proportional,13106,5.785283022144255e-14,1.0,0,True,False,power_W = 66.6667*flow_m3_h,True
+hkust,pump_ct2,pump,speed_Hz,power_W,proportional,13106,7.531584062196293,0.9987028841751868,17,True,False,speed_Hz = 0.00132521*power_W,False
+hkust,pump_ct2,pump,speed_Hz,flow_m3_h,proportional,13106,7.531584062196285,0.9987028841751868,17,True,False,speed_Hz = 0.088347*flow_m3_h,False
+hkust,pump_ct2,pump,flow_m3_h,power_W,proportional,13106,4.0175576542668455e-14,1.0,0,True,False,flow_m3_h = 0.015*power_W,False
+hkust,pump_ct2,pump,flow_m3_h,speed_Hz,proportional,13106,7.531584062196285,0.9987028841751868,17,True,False,flow_m3_h = 11.319*speed_Hz,False
+hkust,pump_ct3,pump,speed_Hz,flow_m3_h,proportional,31826,1.7576236927673812,0.9990573744737008,30,True,False,speed_Hz = 0.0878812*flow_m3_h,False
+hkust,pump_ct3,pump,flow_m3_h,speed_Hz,proportional,31826,1.757160428747142,0.9990573744737008,30,True,False,flow_m3_h = 11.379*speed_Hz,False
+hkust,pump_ct4,pump,speed_Hz,flow_m3_h,proportional,29136,0.0263365815117197,0.999176276771005,24,True,False,speed_Hz = 0.0275938*flow_m3_h,False
+hkust,pump_ct4,pump,flow_m3_h,speed_Hz,proportional,29136,0.0263296471827277,0.999176276771005,24,True,False,flow_m3_h = 36.24*speed_Hz,False
+hkust,pump_cwp10,pump,speed_Hz,flow_m3_h,proportional,43572,2.7569058147491887e-12,1.0,0,True,False,speed_Hz = 0.0652827*flow_m3_h,False
+hkust,pump_cwp10,pump,flow_m3_h,speed_Hz,proportional,43572,2.5827797053872814e-12,1.0,0,True,False,flow_m3_h = 15.318*speed_Hz,False
+hkust,pump_cwp11,pump,speed_Hz,flow_m3_h,proportional,9535,3.6558540032071224e-14,1.0,0,True,False,speed_Hz = 0.0336462*flow_m3_h,False
+hkust,pump_cwp11,pump,flow_m3_h,speed_Hz,proportional,9535,4.329802527266602e-13,1.0,0,True,False,flow_m3_h = 29.721*speed_Hz,False
+hkust,pump_cwp12,pump,power_W,speed_Hz,proportional,17503,5.960753483768578e-12,1.0,0,True,False,power_W = 1293.2*speed_Hz,True
+hkust,pump_cwp12,pump,power_W,flow_m3_h,proportional,17503,1.0611947490042544e-12,1.0,0,True,False,power_W = 66.6667*flow_m3_h,True
+hkust,pump_cwp12,pump,speed_Hz,power_W,proportional,17503,1.9960021912163634e-13,1.0,0,True,False,speed_Hz = 0.000773276*power_W,False
+hkust,pump_cwp12,pump,speed_Hz,flow_m3_h,proportional,17503,6.700864499083507e-13,1.0,0,True,False,speed_Hz = 0.0515517*flow_m3_h,False
+hkust,pump_cwp12,pump,flow_m3_h,power_W,proportional,17503,2.704729524279461e-13,1.0,0,True,False,flow_m3_h = 0.015*power_W,False
+hkust,pump_cwp12,pump,flow_m3_h,speed_Hz,proportional,17503,4.9978697731250896e-12,1.0,0,True,False,flow_m3_h = 19.398*speed_Hz,False
+hkust,pump_cwp13,pump,speed_Hz,flow_m3_h,proportional,35307,2.7853275241795927e-12,1.0,0,True,False,speed_Hz = 0.053087*flow_m3_h,False
+hkust,pump_cwp13,pump,flow_m3_h,speed_Hz,proportional,35307,1.7381647429965185e-12,1.0,0,True,False,flow_m3_h = 18.837*speed_Hz,False
+hkust,pump_cwp15,pump,speed_Hz,flow_m3_h,proportional,11825,1.0829730243519285e-13,1.0,0,True,False,speed_Hz = 0.0301796*flow_m3_h,False
+hkust,pump_cwp15,pump,flow_m3_h,speed_Hz,proportional,11825,1.0458770719559893e-13,1.0,0,True,False,flow_m3_h = 33.135*speed_Hz,False
+hkust,pump_pp1,pump,speed_Hz,flow_m3_h,proportional,13707,5.684341886080803e-14,1.0,0,True,False,speed_Hz = 0.0848608*flow_m3_h,False
+hkust,pump_pp1,pump,flow_m3_h,speed_Hz,proportional,13707,2.122463026031528e-13,1.0,0,True,False,flow_m3_h = 11.784*speed_Hz,False
+hkust,pump_pp2,pump,speed_Hz,flow_m3_h,proportional,11239,1.1368683772161605e-13,1.0,0,True,False,speed_Hz = 0.084538*flow_m3_h,False
+hkust,pump_pp2,pump,flow_m3_h,speed_Hz,proportional,11239,3.267691675150008e-13,1.0,0,True,False,flow_m3_h = 11.829*speed_Hz,False
+hkust,pump_pp3,pump,speed_Hz,flow_m3_h,proportional,14972,9.947598300641405e-14,1.0,0,True,False,speed_Hz = 0.0856018*flow_m3_h,False
+hkust,pump_pp3,pump,flow_m3_h,speed_Hz,proportional,14972,2.5302668898835964e-13,1.0,0,True,False,flow_m3_h = 11.682*speed_Hz,False
+hkust,pump_pp4,pump,speed_Hz,flow_m3_h,proportional,14174,8.526512829121202e-14,1.0,0,True,False,speed_Hz = 0.0856678*flow_m3_h,False
+hkust,pump_pp4,pump,flow_m3_h,speed_Hz,proportional,14174,7.791439233898128e-14,1.0,0,True,False,flow_m3_h = 11.673*speed_Hz,False
+hkust,pump_pp5,pump,speed_Hz,flow_m3_h,proportional,18769,4.263256414560601e-14,1.0,0,True,False,speed_Hz = 0.0946163*flow_m3_h,False
+hkust,pump_pp5,pump,flow_m3_h,speed_Hz,proportional,18769,8.60530515444156e-14,1.0,0,True,False,flow_m3_h = 10.569*speed_Hz,False
+hkust,pump_pp6,pump,speed_Hz,flow_m3_h,proportional,20747,5.684341886080803e-14,1.0,0,True,False,speed_Hz = 0.0939496*flow_m3_h,False
+hkust,pump_pp6,pump,flow_m3_h,speed_Hz,proportional,20747,5.3404189083810616e-14,1.0,0,True,False,flow_m3_h = 10.644*speed_Hz,False
+hkust,pump_pp7,pump,speed_Hz,flow_m3_h,proportional,20336,9.947598300641405e-14,1.0,0,True,False,speed_Hz = 0.094162*flow_m3_h,False
+hkust,pump_pp7,pump,flow_m3_h,speed_Hz,proportional,20336,1.3916467894359776e-13,1.0,0,True,False,flow_m3_h = 10.62*speed_Hz,False
+hkust,pump_pp8,pump,speed_Hz,flow_m3_h,proportional,12241,1.5631940186722204e-13,1.0,0,True,False,speed_Hz = 0.1665*flow_m3_h,False
+hkust,pump_pp8,pump,flow_m3_h,speed_Hz,proportional,12241,1.5143101927621182e-13,1.0,0,True,False,flow_m3_h = 6.006*speed_Hz,False
+hkust,pump_pp9,pump,speed_Hz,flow_m3_h,proportional,15673,7.105427357601003e-14,1.0,0,True,False,speed_Hz = 0.0793462*flow_m3_h,False
+hkust,pump_pp9,pump,flow_m3_h,speed_Hz,proportional,15673,2.886597482418245e-13,1.0,0,True,False,flow_m3_h = 12.603*speed_Hz,False
+hkust,pump_swp1,pump,speed_Hz,flow_m3_h,proportional,34772,1.1795009413617665e-12,1.0,0,True,False,speed_Hz = 0.0376861*flow_m3_h,False
+hkust,pump_swp1,pump,flow_m3_h,speed_Hz,proportional,34772,1.3710114215533118e-13,1.0,0,True,False,flow_m3_h = 26.535*speed_Hz,False
+hkust,pump_swp2,pump,speed_Hz,flow_m3_h,proportional,11667,7.105427357601003e-14,1.0,0,True,False,speed_Hz = 0.0412388*flow_m3_h,False
+hkust,pump_swp2,pump,flow_m3_h,speed_Hz,proportional,11667,2.6254537970268873e-13,1.0,0,True,False,flow_m3_h = 24.249*speed_Hz,False
+hkust,pump_swp3,pump,speed_Hz,flow_m3_h,proportional,43560,1.3663238055373061e-12,1.0,0,True,False,speed_Hz = 0.0423227*flow_m3_h,False
+hkust,pump_swp3,pump,flow_m3_h,speed_Hz,proportional,43560,5.204382194784052e-13,1.0,0,True,False,flow_m3_h = 23.628*speed_Hz,False
+hkust,pump_swp4,pump,speed_Hz,flow_m3_h,proportional,10901,1.1368683772161605e-13,1.0,0,True,False,speed_Hz = 0.0391788*flow_m3_h,False
+hkust,pump_swp4,pump,flow_m3_h,speed_Hz,proportional,10901,2.494304541768727e-13,1.0,0,True,False,flow_m3_h = 25.524*speed_Hz,False
+hkust,pump_swp5,pump,speed_Hz,flow_m3_h,proportional,34569,7.066466864167786e-13,1.0,0,True,False,speed_Hz = 0.0291937*flow_m3_h,False
+hkust,pump_swp5,pump,flow_m3_h,speed_Hz,proportional,34569,3.0335351417491905e-12,1.0,0,True,False,flow_m3_h = 34.254*speed_Hz,False
+hkust,pump_swp7,pump,speed_Hz,flow_m3_h,proportional,15378,7.105427357601003e-14,1.0,0,True,False,speed_Hz = 0.0820008*flow_m3_h,False
+hkust,pump_swp7,pump,flow_m3_h,speed_Hz,proportional,15378,9.322413917311689e-14,1.0,0,True,False,flow_m3_h = 12.195*speed_Hz,False
+hkust,pump_swp8,pump,speed_Hz,flow_m3_h,proportional,488,5.684341886080803e-14,1.0,0,True,False,speed_Hz = 0.0305979*flow_m3_h,False
+hkust,pump_swp8,pump,flow_m3_h,speed_Hz,proportional,488,5.565722426858383e-14,1.0,0,True,False,flow_m3_h = 32.682*speed_Hz,False
+lbnl,cooling_tower_ct1,cooling_tower,fan1_Hz,fan2_Hz,proportional,17518,5.684341886080803e-14,1.0,0,True,False,fan1_Hz = 50*fan2_Hz,False
+lbnl,cooling_tower_ct1,cooling_tower,fan2_Hz,fan1_Hz,proportional,17518,1.665334536937735e-13,1.0,0,True,False,fan2_Hz = 0.02*fan1_Hz,False
+lbnl,cooling_tower_ct2,cooling_tower,fan1_Hz,fan2_Hz,proportional,2185,4.263256414560601e-14,1.0,0,True,False,fan1_Hz = 50*fan2_Hz,False
+lbnl,cooling_tower_ct2,cooling_tower,fan2_Hz,fan1_Hz,proportional,2185,2.220446049250313e-14,1.0,0,True,False,fan2_Hz = 0.02*fan1_Hz,False

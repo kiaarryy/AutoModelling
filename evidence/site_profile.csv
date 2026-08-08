@@ -1,0 +1,5 @@
+site,description,sampling_interval,span_days,window,families,family_list,devices,scored,scored_pct,raw_records,operating_records,public
+A,Hyperscale data centre,5 min,364,2024-05 to 2025-04,4,"Chiller, Cooling tower, Pump, Heat exchanger",34,19,55.9,3574069,1043997,False
+B,Commercial data centre,5 min,367,2022-03 to 2023-03,4,"Chiller, Cooling tower, Pump, Heat exchanger",30,24,80.0,3171930,1246249,False
+C,University campus central plant,30 min,910,2024-01 to 2026-06,2,"Chiller, Pump",40,9,22.5,1749080,411112,False
+D,Public research dataset,30 min,364,2018-01 to 2018-12,3,"Chiller, Cooling tower, Pump",8,6,75.0,140144,55774,True

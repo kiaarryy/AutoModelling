@@ -1,0 +1,9 @@
+stage,manual_h,retain_low,retain_high,auto_low_h,auto_high_h,basis
+1,7.18,0.25,0.6,1.8,4.31,the point list still has to be read and each tag assigned a canonical role; only the writing is templated
+2,8.3,0.1,0.3,0.83,2.49,the pipeline builds the table; the human reviews the QA report and the attrition ledger
+3,8.52,0.15,0.4,1.28,3.41,candidate wiring is configured once per family and reused across every device in it
+4,12.53,0.0,0.0,0.0,0.0,performed by the pipeline (machine time in the manifest)
+5,8.78,0.0,0.0,0.0,0.0,performed by the pipeline (machine time in the manifest)
+6,4.43,0.0,0.0,0.0,0.0,performed by the pipeline (machine time in the manifest)
+7,10.03,0.2,0.5,2.01,5.02,the report is generated; the human judges whether each flag is a real defect or a false positive
+8,7.03,0.1,0.3,0.7,2.11,windows and buffers are declared in configuration once and audited

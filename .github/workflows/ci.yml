@@ -1,0 +1,28 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  pure-synthetic:
+    name: pure/synthetic (no external FMUs)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e . pytest
+      - run: pytest -q -ra
+
+  external-fmu:
+    name: external real-FMU integration
+    if: ${{ vars.AUTOFMU_EXTERNAL_FMU_CI == 'true' }}
+    runs-on: [self-hosted, windows, autofmu-fmu]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q -ra tests/test_fmu_smoke.py tests/test_chiller_fmu.py tests/test_cooling_tower_fmu.py tests/test_heat_exchanger_fmu.py tests/test_pump_fmu.py tests/test_pipeline_fmu_smoke.py

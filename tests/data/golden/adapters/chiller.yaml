@@ -1,0 +1,11 @@
+source_csv: chiller.csv
+timestamp: timestamp
+columns:
+  power_W: {source: power_W}
+  chw_flow_m3_h: {source: chw_flow_m3_h}
+  cw_flow_m3_h: {source: cw_flow_m3_h}
+  tchws_C: {source: tchws_C}
+  tchwr_C: {source: tchwr_C}
+  tcws_C: {source: tcws_C}
+  tcwr_C: {source: tcwr_C}
+  run_signal: {source: run_signal}

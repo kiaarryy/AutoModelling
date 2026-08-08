@@ -1,0 +1,16 @@
+source_csv: cooling_tower/CT_02.csv
+timestamp: DateTime
+columns:
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  fan1_Hz:
+    source: CT-1F02-A-VSD-STS.Present Value (Hz)
+  fan2_Hz:
+    source: CT-1F02-B-VSD-STS.Present Value (Hz)
+  tcwr_C:
+    source: CT-1F02-CDWR-WTS.Present Value (°C)
+  tcws_1_C:
+    source: CT-1F02-CDWS-WTS.Present Value (°C)
+  run_signal:
+    source: CT-1F02-A-VSD-STS.Present Value (Hz)

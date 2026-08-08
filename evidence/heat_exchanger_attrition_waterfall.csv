@@ -1,0 +1,22 @@
+device,family,order,name,category,kind,removed,remaining,retained_pct
+HX_01,heat_exchanger,0,raw records,source,,0,105120,100.0
+HX_01,heat_exchanger,1,tchws_C present,missing_channel,gate,3679,101441,96.5001902587519
+HX_01,heat_exchanger,2,tchwr_C present,missing_channel,gate,9988,91453,86.99866818873669
+HX_01,heat_exchanger,3,tcws_C present,missing_channel,gate,5,91448,86.99391171993912
+HX_01,heat_exchanger,4,tcwr_C present,missing_channel,gate,0,91448,86.99391171993912
+HX_01,heat_exchanger,5,chw_flow_m3_h present,missing_channel,gate,0,91448,86.99391171993912
+HX_01,heat_exchanger,6,cw_flow_m3_h present,missing_channel,gate,2,91446,86.9920091324201
+HX_02,heat_exchanger,0,raw records,source,,0,105120,100.0
+HX_02,heat_exchanger,1,tchws_C present,missing_channel,gate,12379,92741,88.22393455098934
+HX_02,heat_exchanger,2,tchwr_C present,missing_channel,gate,8,92733,88.21632420091325
+HX_02,heat_exchanger,3,tcws_C present,missing_channel,gate,3,92730,88.21347031963471
+HX_02,heat_exchanger,4,tcwr_C present,missing_channel,gate,1,92729,88.2125190258752
+HX_02,heat_exchanger,5,chw_flow_m3_h present,missing_channel,gate,3,92726,88.20966514459666
+HX_02,heat_exchanger,6,cw_flow_m3_h present,missing_channel,gate,0,92726,88.20966514459666
+HX_03,heat_exchanger,0,raw records,source,,0,105120,100.0
+HX_03,heat_exchanger,1,tchws_C present,missing_channel,gate,105120,0,0.0
+HX_03,heat_exchanger,2,tchwr_C present,missing_channel,gate,0,0,0.0
+HX_03,heat_exchanger,3,tcws_C present,missing_channel,gate,0,0,0.0
+HX_03,heat_exchanger,4,tcwr_C present,missing_channel,gate,0,0,0.0
+HX_03,heat_exchanger,5,chw_flow_m3_h present,missing_channel,gate,0,0,0.0
+HX_03,heat_exchanger,6,cw_flow_m3_h present,missing_channel,gate,0,0,0.0

@@ -1,0 +1,122 @@
+# FMU interface contract: chiller (Buildings ElectricEIR / ElectricReformulatedEIR).
+# Drive mode: data_table -- measured operating points live in an external Dymola
+# table (AllData2 layout) injected via `table_param`; both measured (*_m) and
+# simulated (*_s) signals come out of the FMU. autofmu builds the table from its
+# own L2 canonical data, estimates nominals, fits the curve coefficients
+# (tunable_parameters) and injects them as start_values; the FMU computes physics.
+#
+# Fitting (FMU-1): screen the reference-curve library (Hydeman technique 2, also
+# the old project's baseline) for a per-chiller warm start, then refine the
+# coefficients FMU-in-the-loop (technique 1) to reduce power error. Candidate
+# selection uses a disjoint selection period and reports an untouched test period.
+device_type: chiller
+drive: data_table
+
+fmu_root: ${AUTOFMU_FMU_ROOT}
+
+# Scoring targets: chiller uses P / Q, with COP derived downstream from Q/P.
+# Current evidence labels raw-interval metrics as `raw_interval_custom`, not GL14.
+score_variables: [power, cooling]
+
+# AllData2 table column order the FMU's CombiTimeTable reads (columns 2..12).
+table_columns: [Time, CHWS, CHWR, CDWS, CDWR, CHW, CDW, "P/kw", VSD, deltaT_chw, deltaT_cdw, Q_evap_kW]
+
+calibration:
+  subset_rows: 600        # downsampled steady rows used for screening + refine
+  max_refine_nfev: 80     # FMU-in-the-loop least-squares evaluation budget per model
+
+# Which model types compete by default. Carnot is a valid Buildings chiller type
+# but fits the warm DC chillers worse than EIR/EEIR, so it is NOT in the default
+# set; enable it to compare with `--candidates chiller=EIR,EEIR,Carnot` or a
+# project `fmu_candidates: {chiller: [EIR, EEIR, Carnot]}`. See docs/EXTENSIBLE_TYPES.md.
+enabled_candidates: [EIR, EEIR]
+
+candidates:
+  - name: EIR            # Buildings.Fluid.Chillers.ElectricEIR (TConEnt-based)
+    fmu: Cali_EIR_BSU_CH1/Modelica/ChillerCalibration_FMU_chiller_0EIR3.fmu
+    table_param: VSD2.fileName
+    output_interval: 1800
+    condenser: entering              # EIR uses condenser ENTERING water temp (CDWS)
+    screening_library: Cali_EIR_BSU_CH1/ChillerData/ChillerData_v3.xlsx
+    screening_sheet: Chiller Data
+    outputs: [P_m, P_s, Q_m, Q_s]
+    compare:
+      - {name: power,   measured: P_m, simulated: P_s}
+      - {name: cooling, measured: Q_m, simulated: Q_s}
+    tunable_parameters:
+      capFT:   [capFunT_1, capFunT_2, capFunT_3, capFunT_4, capFunT_5, capFunT_6]
+      EIRFT:   [EIRFunT_1, EIRFunT_2, EIRFunT_3, EIRFunT_4, EIRFunT_5, EIRFunT_6]
+      EIRFPLR: [EIRFunPLR_1, EIRFunPLR_2, EIRFunPLR_3]
+    nominal_params:
+      QEva_flow_nominal: datChi.QEva_flow_nominal
+      COP_nominal: datChi.COP_nominal
+      mEva_flow_nominal: datChi.mEva_flow_nominal
+      mCon_flow_nominal: datChi.mCon_flow_nominal
+      TEvaLvg_nominal: datChi.TEvaLvg_nominal
+      TEvaLvgMin: datChi.TEvaLvgMin
+      TEvaLvgMax: datChi.TEvaLvgMax
+      TCon_nominal: datChi.TConEnt_nominal
+      TConMin: datChi.TConEntMin
+      TConMax: datChi.TConEntMax
+      PLRMax: datChi.PLRMax
+      PLRMin: datChi.PLRMin
+      PLRMinUnl: datChi.PLRMinUnl
+      etaMotor: datChi.etaMotor
+
+  - name: EEIR           # Buildings.Fluid.Chillers.ElectricReformulatedEIR (TConLvg-based)
+    fmu: Cali_EIR_BSU_CH1/Modelica/ChillerCalibration_0EEIR_FMU_chiller_0EEIR.fmu
+    table_param: VSD2.fileName
+    output_interval: 1800
+    condenser: leaving               # EEIR uses condenser LEAVING water temp (CDWR)
+    screening_library: outputs/ChillerData_ElectricReformulatedEIR_v12_1_0.xlsx
+    screening_sheet: Chiller Data
+    outputs: [P_m, P_s, Q_m, Q_s]
+    compare:
+      - {name: power,   measured: P_m, simulated: P_s}
+      - {name: cooling, measured: Q_m, simulated: Q_s}
+    tunable_parameters:
+      # EEIR's EIRFPLR carries Tc and PLR^3 terms -> 10 coefficients (vs 3 for EIR).
+      capFT:   [capFunT_1, capFunT_2, capFunT_3, capFunT_4, capFunT_5, capFunT_6]
+      EIRFT:   [EIRFunT_1, EIRFunT_2, EIRFunT_3, EIRFunT_4, EIRFunT_5, EIRFunT_6]
+      EIRFPLR: [EIRFunPLR_1, EIRFunPLR_2, EIRFunPLR_3, EIRFunPLR_4, EIRFunPLR_5,
+                EIRFunPLR_6, EIRFunPLR_7, EIRFunPLR_8, EIRFunPLR_9, EIRFunPLR_10]
+    nominal_params:
+      QEva_flow_nominal: QEva_flow_nominal
+      COP_nominal: COP_nominal
+      mEva_flow_nominal: mEva_flow_nominal
+      mCon_flow_nominal: mCon_flow_nominal
+      TEvaLvg_nominal: TEvaLvg_nominal
+      TEvaLvgMin: TEvaLvgMin
+      TEvaLvgMax: TEvaLvgMax
+      TCon_nominal: TConLvg_nominal
+      TConMin: TConLvgMin
+      TConMax: TConLvgMax
+      PLRMax: PLRMax
+      PLRMin: PLRMin
+      PLRMinUnl: PLRMinUnl
+      etaMotor: etaMotor
+
+  # Opt-in third type (off by default; see enabled_candidates above). Demonstrates
+  # adding a Buildings model type with a *different* fit strategy and no reference
+  # curve library: the nominal Carnot effectiveness etaCarnot_nominal is warm-
+  # started then refined FMU-in-the-loop (refine_only). The part-load polynomial
+  # a1..a6 keeps the model's valid default {1,0,0,0,0,0} -- Carnot_TEva asserts
+  # etaPL(y=1)=1 (sum(a)=1), so a is left fixed rather than fitted.
+  - name: Carnot         # Buildings.Fluid.Chillers.Carnot_TEva
+    fmu: Cali_EIR_BSU_CH1/Modelica/ChillerCalibration_FMU_chiller_Carnot.fmu
+    table_param: VSD2.fileName
+    output_interval: 1800
+    condenser: leaving               # Carnot_TEva sets evaporator leaving temp; condenser nominal ~ leaving
+    fit_strategy: refine_only
+    outputs: [P_m, P_s, Q_m, Q_s]
+    compare:
+      - {name: power,   measured: P_m, simulated: P_s}
+      - {name: cooling, measured: Q_m, simulated: Q_s}
+    tunable_parameters:
+      carnot_eff: ['Chi.etaCarnot_nominal']     # nominal Carnot effectiveness
+    warm_start:
+      Chi.etaCarnot_nominal: 0.45
+    nominal_params:
+      QEva_flow_nominal: Chi.QEva_flow_nominal
+      TEvaLvg_nominal: Chi.TEva_nominal
+      TCon_nominal: Chi.TCon_nominal

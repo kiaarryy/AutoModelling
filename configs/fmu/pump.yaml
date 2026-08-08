@@ -1,0 +1,60 @@
+# FMU interface contract: pump. Two model *types* compete (see model_types):
+#   empirical_power -- PumpEmpiricalPower FMU; OLS-fit c0..c4 for feature-subset
+#                      "forms" (affinity / speed-poly / speed-flow); driven with
+#                      measured m_flow + speed (input mode).
+#   mover (opt-in)  -- Buildings SpeedControlled_y + a system resistance; driven by
+#                      speed only, predicts flow + power from the pump curve, and is
+#                      calibrated by one power scale (scale_fit). Off by default; enable
+#                      with `--candidates pump=empirical_power,mover`.
+#
+# The empirical power model P = f(m_flow, y) is a static map, so chunked simulation
+# (max_input_rows_per_chunk) is valid for long full-period runs.
+device_type: pump
+drive: input
+
+fmu_root: ${AUTOFMU_FMU_ROOT}
+
+score_variables: [power]
+
+enabled_candidates: [empirical_power]    # mover is opt-in; default keeps the proven engine
+
+candidates:
+  - name: empirical_power     # PumpEmpiricalPower (c0..c4 polynomial in y, scaled by m_flow)
+    fmu: outputs/pump/stage4_modelica_interface/fmu/PumpEmpiricalPower.fmu
+    fit_strategy: ols
+    inputs: [m_flow_in, y_in]
+    # OLS feature-subset forms: form name -> design-matrix columns (-> c0..c4 slots).
+    forms:
+      affinity: [y3]
+      speed_poly: ["1", y, y3]
+      speed_flow: ["1", phi, y, y3, phi_y]
+    requires_flow: [speed_flow]   # forms needing observed flow (dropped when none)
+    # Source columns in the prepared per-pump table -> FMU input ports.
+    input_map:
+      m_flow_in: m_flow_kg_s
+      y_in: y_used
+    input_time_column: time_s
+    output_interval: 300
+    outputs: [P_s, m_flow_s, y_s]
+    # Measured power lives alongside in the prepared table (P_meas_W), not in the FMU.
+    measured:
+      power: P_meas_W
+    compare:
+      - {name: power, measured: P_meas_W, simulated: P_s}
+    tunable_parameters:
+      characteristic: [c0, c1, c2, c3, c4]
+      nominal: [P_nominal, m_flow_nominal, y_min, y_max]
+
+  - name: mover               # Buildings.Fluid.Movers.SpeedControlled_y + system curve (opt-in)
+    fmu: outputs/pump/mbl_speed_system/fmu/SiteAPumpMblSpeedSystemCurve.fmu
+    fit_strategy: scale_fit
+    inputs: [y_in]            # speed-only; flow + power are predicted by the pump curve
+    output_interval: 300
+    outputs: [P_s, m_flow_s, y_s]
+    dp_nominal: 300000.0
+    dp_system_nominal: 250000.0
+    compare:
+      - {name: power, measured: P_meas_W, simulated: P_s}
+    tunable_parameters:
+      power_scale: [P_scale]
+      nominal: [m_flow_nominal, dp_nominal, dp_system_nominal, y_min, y_max]

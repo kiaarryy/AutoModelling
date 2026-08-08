@@ -1,0 +1,18 @@
+source_csv: cooling_tower/CT_07.csv
+timestamp: DateTime
+columns:
+  # Towers 06 and 07 carry a single variable-speed drive for both
+  # cells, unlike CT_01-CT_05 which expose an A and a B channel.
+  # Mapping it to fan1_Hz alone would halve the effective fan count,
+  # so the fans_on_count reconstruction sets per_signal: 2.
+  fan1_Hz:
+    source: CT-3F07-VSD-STS.Present Value (Hz)
+  run_signal:
+    source: CT-3F07-VSD-STS.Present Value (Hz)
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  tcwr_C:
+    source: CT-3F07-CDWR-WTS.Present Value (°C)
+  tcws_1_C:
+    source: CT-3F07-CDWS-WTS.Present Value (°C)

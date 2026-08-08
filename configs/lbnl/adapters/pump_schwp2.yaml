@@ -1,0 +1,17 @@
+# LBNL ChillerPlant -> canonical pump (secondary chilled-water pump SCHWP2).
+# VFD pump: power + 0-1 speed command. speed_Hz = SPD*50 so y = speed_Hz/50 = SPD.
+# No dedicated per-pump flow meter (CWL_SEC header serves two pumps), so flow is
+# intentionally omitted -> only speed-only forms (affinity / speed-poly) compete.
+source_csv: ChillerPlant_30min.csv
+timestamp: Datetime
+columns:
+  power_W:
+    source: CWL_SEC_PM_POW_2
+    scale: 1000.0
+    unit: W
+  speed_Hz:                      # 0-1 speed command -> 0-50 Hz
+    source: CWL_SEC_PM_SPD_2
+    scale: 50.0
+    unit: Hz
+  run_signal:
+    source: CWL_SEC_PM_STA_2

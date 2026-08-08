@@ -1,0 +1,10 @@
+source_csv: building2/CDWP_04.csv
+timestamp: DateTime
+columns:
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  speed_Hz:
+    source: CDWP-2E01-VSD-STS.Present Value (Hz)
+  run_signal:
+    source: CDWP-2E01-VSD-STS.Present Value (Hz)

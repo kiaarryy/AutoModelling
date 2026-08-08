@@ -1,0 +1,1397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="SiteACTYork27ClosedLoop"
+  guid="{dd9f5527-d60b-4a8a-bbd4-b0e1b18e4508}"
+  description="Site A cooling tower, York 27-coefficient correlation, MBL-consistent closed loop"
+  version=""
+  generationTool="OpenModelica Compiler OpenModelica v1.25.4 (64-bit)"
+  generationDateAndTime="2026-08-02T19:11:34Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="5">
+  <CoSimulation
+    modelIdentifier="SiteACTYork27ClosedLoop"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="true"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="SiteACTYork27ClosedLoop.c" />
+      <File name="SiteACTYork27ClosedLoop_functions.c" />
+      <File name="SiteACTYork27ClosedLoop_records.c" />
+      <File name="SiteACTYork27ClosedLoop_01exo.c" />
+      <File name="SiteACTYork27ClosedLoop_02nls.c" />
+      <File name="SiteACTYork27ClosedLoop_03lsy.c" />
+      <File name="SiteACTYork27ClosedLoop_04set.c" />
+      <File name="SiteACTYork27ClosedLoop_05evt.c" />
+      <File name="SiteACTYork27ClosedLoop_06inz.c" />
+      <File name="SiteACTYork27ClosedLoop_07dly.c" />
+      <File name="SiteACTYork27ClosedLoop_08bnd.c" />
+      <File name="SiteACTYork27ClosedLoop_09alg.c" />
+      <File name="SiteACTYork27ClosedLoop_10asr.c" />
+      <File name="SiteACTYork27ClosedLoop_11mix.c" />
+      <File name="SiteACTYork27ClosedLoop_12jac.c" />
+      <File name="SiteACTYork27ClosedLoop_13opt.c" />
+      <File name="SiteACTYork27ClosedLoop_14lnz.c" />
+      <File name="SiteACTYork27ClosedLoop_15syn.c" />
+      <File name="SiteACTYork27ClosedLoop_16dae.c" />
+      <File name="SiteACTYork27ClosedLoop_17inl.c" />
+      <File name="SiteACTYork27ClosedLoop_18spd.c" />
+      <File name="SiteACTYork27ClosedLoop_init_fmu.c" />
+      <File name="SiteACTYork27ClosedLoop_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./simulation/solver/nonlinearSolverHomotopy.c" />
+      <File name="./simulation/solver/nonlinearSolverHybrd.c" />
+      <File name="./simulation/solver/nonlinearValuesList.c" />
+      <File name="./simulation/solver/nonlinearSystem.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </CoSimulation>
+  <UnitDefinitions>
+    <Unit name="s">
+      <BaseUnit s="1" />
+    </Unit>
+    <Unit name="kg/s">
+      <BaseUnit s="-1" kg="1" />
+    </Unit>
+    <Unit name="J/(kg.K)">
+      <BaseUnit m="2" s="-2" K="-1" />
+    </Unit>
+    <Unit name="K">
+      <BaseUnit K="1" />
+    </Unit>
+    <Unit name="1">
+      <BaseUnit />
+    </Unit>
+    <Unit name="W">
+      <BaseUnit m="2" s="-3" kg="1" />
+    </Unit>
+  </UnitDefinitions>
+  <TypeDefinitions>
+    <SimpleType name="Modelica.Blocks.Types.Extrapolation">
+      <Enumeration>
+        <Item name="HoldLastPoint" value="1"/>
+        <Item name="LastTwoPoints" value="2"/>
+        <Item name="Periodic" value="3"/>
+        <Item name="NoExtrapolation" value="4"/>
+      </Enumeration>
+    </SimpleType>
+    <SimpleType name="Modelica.Blocks.Types.Smoothness">
+      <Enumeration>
+        <Item name="LinearSegments" value="1"/>
+        <Item name="ContinuousDerivative" value="2"/>
+        <Item name="ConstantSegments" value="3"/>
+        <Item name="MonotoneContinuousDerivative1" value="4"/>
+        <Item name="MonotoneContinuousDerivative2" value="5"/>
+        <Item name="ModifiedContinuousDerivative" value="6"/>
+      </Enumeration>
+    </SimpleType>
+    <SimpleType name="Modelica.Blocks.Types.TimeEvents">
+      <Enumeration>
+        <Item name="Always" value="1"/>
+        <Item name="AtDiscontinuities" value="2"/>
+        <Item name="NoTimeEvents" value="3"/>
+      </Enumeration>
+    </SimpleType>
+  </TypeDefinitions>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="3600.0" tolerance="1e-6" stepSize="300.0"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_P_m)"
+    valueReference="0"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_P_s)"
+    valueReference="1"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_Q_m)"
+    valueReference="2"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_Q_s)"
+    valueReference="3"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_Rlg_s)"
+    valueReference="4"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_TApp_m)"
+    valueReference="5"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_TApp_s)"
+    valueReference="6"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_TOut_m)"
+    valueReference="7"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_TOut_s)"
+    valueReference="8"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="der(_D_outputAlias_inDomain)"
+    valueReference="9"
+    description="1 when the operating point is inside the York correlation's validity box"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="der(FRAir)"
+    valueReference="10"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="der(FRWat)"
+    valueReference="11"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="der(TApp_forced_C)"
+    valueReference="12"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="der(TApp_free_C)"
+    valueReference="13"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="der(TApp_raw_C)"
+    valueReference="14"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="der(TRan_s_C)"
+    valueReference="15"
+    description="Model-predicted range -- the closed loop"
+    initial="approx">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="der(Tin_C)"
+    valueReference="16"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="der(Tout_meas_C)"
+    valueReference="17"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="der(Twb_C)"
+    valueReference="18"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="der(fanRelPow)"
+    valueReference="19"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="der(mdot_cell_kgps)"
+    valueReference="20"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="der(tab.y[6])"
+    valueReference="22"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "23" -->
+  <ScalarVariable
+    name="der(y_used)"
+    valueReference="23"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "24" -->
+  <ScalarVariable
+    name="FRAir"
+    valueReference="53"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "25" -->
+  <ScalarVariable
+    name="FRWat"
+    valueReference="54"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "26" -->
+  <ScalarVariable
+    name="P_m"
+    valueReference="55"
+    causality="output"
+    >
+    <Real unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "27" -->
+  <ScalarVariable
+    name="P_s"
+    valueReference="56"
+    causality="output"
+    >
+    <Real unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "28" -->
+  <ScalarVariable
+    name="Q_m"
+    valueReference="57"
+    causality="output"
+    >
+    <Real unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "29" -->
+  <ScalarVariable
+    name="Q_s"
+    valueReference="58"
+    causality="output"
+    >
+    <Real unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "30" -->
+  <ScalarVariable
+    name="Rlg_s"
+    valueReference="59"
+    causality="output"
+    >
+    <Real unit="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "31" -->
+  <ScalarVariable
+    name="TApp_forced_C"
+    valueReference="60"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "32" -->
+  <ScalarVariable
+    name="TApp_free_C"
+    valueReference="61"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "33" -->
+  <ScalarVariable
+    name="TApp_m"
+    valueReference="62"
+    causality="output"
+    >
+    <Real unit="K"/>
+  </ScalarVariable>
+  <!-- Index of variable = "34" -->
+  <ScalarVariable
+    name="TApp_raw_C"
+    valueReference="63"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "35" -->
+  <ScalarVariable
+    name="TApp_s"
+    valueReference="64"
+    causality="output"
+    >
+    <Real unit="K"/>
+  </ScalarVariable>
+  <!-- Index of variable = "36" -->
+  <ScalarVariable
+    name="TOut_m"
+    valueReference="65"
+    causality="output"
+    >
+    <Real unit="K"/>
+  </ScalarVariable>
+  <!-- Index of variable = "37" -->
+  <ScalarVariable
+    name="TOut_s"
+    valueReference="66"
+    causality="output"
+    >
+    <Real unit="K"/>
+  </ScalarVariable>
+  <!-- Index of variable = "38" -->
+  <ScalarVariable
+    name="TRan_meas_C"
+    valueReference="67"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "39" -->
+  <ScalarVariable
+    name="TRan_s_C"
+    valueReference="68"
+    description="Model-predicted range -- the closed loop"
+    initial="approx">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "40" -->
+  <ScalarVariable
+    name="Tin_C"
+    valueReference="69"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "41" -->
+  <ScalarVariable
+    name="Tout_meas_C"
+    valueReference="70"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "42" -->
+  <ScalarVariable
+    name="Twb_C"
+    valueReference="71"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "43" -->
+  <ScalarVariable
+    name="fanRelPow"
+    valueReference="72"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "44" -->
+  <ScalarVariable
+    name="inDomain"
+    valueReference="73"
+    description="1 when the operating point is inside the York correlation's validity box"
+    causality="output"
+    >
+    <Real unit="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "45" -->
+  <ScalarVariable
+    name="mdot_cell_kgps"
+    valueReference="74"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "46" -->
+  <ScalarVariable
+    name="tab.y[6]"
+    valueReference="76"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "47" -->
+  <ScalarVariable
+    name="tab.y[8]"
+    valueReference="77"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "48" -->
+  <ScalarVariable
+    name="tab.y[9]"
+    valueReference="78"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "49" -->
+  <ScalarVariable
+    name="y_used"
+    valueReference="79"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "50" -->
+  <ScalarVariable
+    name="FRWat0"
+    valueReference="83"
+    description="MBL water-flow-ratio normalisation, back-solved from the design point"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "51" -->
+  <ScalarVariable
+    name="FRWatValidMax"
+    valueReference="84"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.25"/>
+  </ScalarVariable>
+  <!-- Index of variable = "52" -->
+  <ScalarVariable
+    name="FRWatValidMin"
+    valueReference="85"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.75"/>
+  </ScalarVariable>
+  <!-- Index of variable = "53" -->
+  <ScalarVariable
+    name="PFan_nominal"
+    valueReference="86"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1e4" unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "54" -->
+  <ScalarVariable
+    name="RlgMax"
+    valueReference="87"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="8.0" min="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "55" -->
+  <ScalarVariable
+    name="RlgMin"
+    valueReference="88"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.05" min="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "56" -->
+  <ScalarVariable
+    name="TAppMax_C"
+    valueReference="89"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="40.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "57" -->
+  <ScalarVariable
+    name="TAppMin_C"
+    valueReference="90"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "58" -->
+  <ScalarVariable
+    name="TRanValidMax"
+    valueReference="91"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="22.2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "59" -->
+  <ScalarVariable
+    name="TRanValidMin"
+    valueReference="92"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "60" -->
+  <ScalarVariable
+    name="cpWat"
+    valueReference="93"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4180.0" unit="J/(kg.K)"/>
+  </ScalarVariable>
+  <!-- Index of variable = "61" -->
+  <ScalarVariable
+    name="f[1]"
+    valueReference="94"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.359741205"/>
+  </ScalarVariable>
+  <!-- Index of variable = "62" -->
+  <ScalarVariable
+    name="f[2]"
+    valueReference="95"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.055053608"/>
+  </ScalarVariable>
+  <!-- Index of variable = "63" -->
+  <ScalarVariable
+    name="f[3]"
+    valueReference="96"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0023850432"/>
+  </ScalarVariable>
+  <!-- Index of variable = "64" -->
+  <ScalarVariable
+    name="f[4]"
+    valueReference="97"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.173926877"/>
+  </ScalarVariable>
+  <!-- Index of variable = "65" -->
+  <ScalarVariable
+    name="f[5]"
+    valueReference="98"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.0248473764"/>
+  </ScalarVariable>
+  <!-- Index of variable = "66" -->
+  <ScalarVariable
+    name="f[6]"
+    valueReference="99"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.8430224e-4"/>
+  </ScalarVariable>
+  <!-- Index of variable = "67" -->
+  <ScalarVariable
+    name="f[7]"
+    valueReference="100"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.005589849456"/>
+  </ScalarVariable>
+  <!-- Index of variable = "68" -->
+  <ScalarVariable
+    name="f[8]"
+    valueReference="101"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="5.770079712e-4"/>
+  </ScalarVariable>
+  <!-- Index of variable = "69" -->
+  <ScalarVariable
+    name="f[9]"
+    valueReference="102"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-1.342427256e-5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "70" -->
+  <ScalarVariable
+    name="f[10]"
+    valueReference="103"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.84765801111111"/>
+  </ScalarVariable>
+  <!-- Index of variable = "71" -->
+  <ScalarVariable
+    name="f[11]"
+    valueReference="104"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.121765149"/>
+  </ScalarVariable>
+  <!-- Index of variable = "72" -->
+  <ScalarVariable
+    name="f[12]"
+    valueReference="105"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0014599242"/>
+  </ScalarVariable>
+  <!-- Index of variable = "73" -->
+  <ScalarVariable
+    name="f[13]"
+    valueReference="106"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.680428651"/>
+  </ScalarVariable>
+  <!-- Index of variable = "74" -->
+  <ScalarVariable
+    name="f[14]"
+    valueReference="107"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.0166920786"/>
+  </ScalarVariable>
+  <!-- Index of variable = "75" -->
+  <ScalarVariable
+    name="f[15]"
+    valueReference="108"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-7.190532e-4"/>
+  </ScalarVariable>
+  <!-- Index of variable = "76" -->
+  <ScalarVariable
+    name="f[16]"
+    valueReference="109"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.025485194448"/>
+  </ScalarVariable>
+  <!-- Index of variable = "77" -->
+  <ScalarVariable
+    name="f[17]"
+    valueReference="110"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.87491696e-5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "78" -->
+  <ScalarVariable
+    name="f[18]"
+    valueReference="111"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.719234152e-5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "79" -->
+  <ScalarVariable
+    name="f[19]"
+    valueReference="112"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.0653766255555556"/>
+  </ScalarVariable>
+  <!-- Index of variable = "80" -->
+  <ScalarVariable
+    name="f[20]"
+    valueReference="113"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.002278167"/>
+  </ScalarVariable>
+  <!-- Index of variable = "81" -->
+  <ScalarVariable
+    name="f[21]"
+    valueReference="114"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.500254e-4"/>
+  </ScalarVariable>
+  <!-- Index of variable = "82" -->
+  <ScalarVariable
+    name="f[22]"
+    valueReference="115"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.0910565458"/>
+  </ScalarVariable>
+  <!-- Index of variable = "83" -->
+  <ScalarVariable
+    name="f[23]"
+    valueReference="116"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.00318176316"/>
+  </ScalarVariable>
+  <!-- Index of variable = "84" -->
+  <ScalarVariable
+    name="f[24]"
+    valueReference="117"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.8621772e-5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "85" -->
+  <ScalarVariable
+    name="f[25]"
+    valueReference="118"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-0.0034285382352"/>
+  </ScalarVariable>
+  <!-- Index of variable = "86" -->
+  <ScalarVariable
+    name="f[26]"
+    valueReference="119"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="8.56589904e-6"/>
+  </ScalarVariable>
+  <!-- Index of variable = "87" -->
+  <ScalarVariable
+    name="f[27]"
+    valueReference="120"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-1.516821552e-6"/>
+  </ScalarVariable>
+  <!-- Index of variable = "88" -->
+  <ScalarVariable
+    name="fanRelPow_r_P[1]"
+    valueReference="121"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "89" -->
+  <ScalarVariable
+    name="fanRelPow_r_P[2]"
+    valueReference="122"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0025"/>
+  </ScalarVariable>
+  <!-- Index of variable = "90" -->
+  <ScalarVariable
+    name="fanRelPow_r_P[3]"
+    valueReference="123"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0437"/>
+  </ScalarVariable>
+  <!-- Index of variable = "91" -->
+  <ScalarVariable
+    name="fanRelPow_r_P[4]"
+    valueReference="124"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.265"/>
+  </ScalarVariable>
+  <!-- Index of variable = "92" -->
+  <ScalarVariable
+    name="fanRelPow_r_P[5]"
+    valueReference="125"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "93" -->
+  <ScalarVariable
+    name="fraFreCon"
+    valueReference="126"
+    description="Fraction of nominal capacity available under free convection"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.1" min="0.0" max="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "94" -->
+  <ScalarVariable
+    name="m_flow_nominal"
+    valueReference="127"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="100.0" unit="kg/s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "95" -->
+  <ScalarVariable
+    name="tab.offset[1]"
+    valueReference="128"
+    description="Offsets of output signals"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "96" -->
+  <ScalarVariable
+    name="tab.shiftTime"
+    valueReference="140"
+    description="Shift time of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "97" -->
+  <ScalarVariable
+    name="tab.startTime"
+    valueReference="141"
+    description="Output = offset for time &lt; startTime"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "98" -->
+  <ScalarVariable
+    name="tab.t_max"
+    valueReference="142"
+    description="Maximum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "99" -->
+  <ScalarVariable
+    name="tab.t_maxScaled"
+    valueReference="143"
+    description="Maximum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "100" -->
+  <ScalarVariable
+    name="tab.t_min"
+    valueReference="144"
+    description="Minimum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "101" -->
+  <ScalarVariable
+    name="tab.t_minScaled"
+    valueReference="145"
+    description="Minimum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "102" -->
+  <ScalarVariable
+    name="tab.timeScale"
+    valueReference="146"
+    description="Time scale of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real min="1e-15" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "103" -->
+  <ScalarVariable
+    name="yMin"
+    valueReference="147"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.05" min="0.0" max="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "104" -->
+  <ScalarVariable
+    name="Rlg"
+    valueReference="59"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "105" -->
+  <ScalarVariable
+    name="TAppAct_C"
+    valueReference="62"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "106" -->
+  <ScalarVariable
+    name="tab.y[1]"
+    valueReference="69"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "107" -->
+  <ScalarVariable
+    name="tab.y[2]"
+    valueReference="70"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "108" -->
+  <ScalarVariable
+    name="tab.y[3]"
+    valueReference="71"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "109" -->
+  <ScalarVariable
+    name="tab.y[4]"
+    valueReference="67"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "110" -->
+  <ScalarVariable
+    name="tab.y[5]"
+    valueReference="62"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "111" -->
+  <ScalarVariable
+    name="tab.y[7]"
+    valueReference="79"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "112" -->
+  <ScalarVariable
+    name="tab.y[10]"
+    valueReference="57"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "113" -->
+  <ScalarVariable
+    name="tab.y[11]"
+    valueReference="55"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "114" -->
+  <ScalarVariable
+    name="tab.columns[1]"
+    valueReference="0"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "115" -->
+  <ScalarVariable
+    name="tab.columns[2]"
+    valueReference="1"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "116" -->
+  <ScalarVariable
+    name="tab.columns[3]"
+    valueReference="2"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "117" -->
+  <ScalarVariable
+    name="tab.columns[4]"
+    valueReference="3"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "118" -->
+  <ScalarVariable
+    name="tab.columns[5]"
+    valueReference="4"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "119" -->
+  <ScalarVariable
+    name="tab.columns[6]"
+    valueReference="5"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "120" -->
+  <ScalarVariable
+    name="tab.columns[7]"
+    valueReference="6"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "121" -->
+  <ScalarVariable
+    name="tab.columns[8]"
+    valueReference="7"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "122" -->
+  <ScalarVariable
+    name="tab.columns[9]"
+    valueReference="8"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "123" -->
+  <ScalarVariable
+    name="tab.columns[10]"
+    valueReference="9"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "124" -->
+  <ScalarVariable
+    name="tab.columns[11]"
+    valueReference="10"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "125" -->
+  <ScalarVariable
+    name="tab.extrapolation"
+    valueReference="11"
+    description="Extrapolation of data outside the definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Extrapolation"/>
+  </ScalarVariable>
+  <!-- Index of variable = "126" -->
+  <ScalarVariable
+    name="tab.nout"
+    valueReference="12"
+    description="Number of outputs"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "127" -->
+  <ScalarVariable
+    name="tab.smoothness"
+    valueReference="13"
+    description="Smoothness of table interpolation"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Smoothness"/>
+  </ScalarVariable>
+  <!-- Index of variable = "128" -->
+  <ScalarVariable
+    name="tab.timeEvents"
+    valueReference="14"
+    description="Time event handling of table interpolation"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.TimeEvents" start="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "129" -->
+  <ScalarVariable
+    name="tab.tableOnFile"
+    valueReference="1"
+    description="= true, if table is defined on file or in function usertab"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "130" -->
+  <ScalarVariable
+    name="tab.verboseExtrapolation"
+    valueReference="2"
+    description="= true, if warning messages are to be printed if time is outside the table definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "131" -->
+  <ScalarVariable
+    name="tab.verboseRead"
+    valueReference="3"
+    description="= true, if info message that file is loading is to be printed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Boolean start="true"/>
+  </ScalarVariable>
+  <!-- Index of variable = "132" -->
+  <ScalarVariable
+    name="tab.fileName"
+    valueReference="0"
+    description="File where matrix is stored"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <String/>
+  </ScalarVariable>
+  <!-- Index of variable = "133" -->
+  <ScalarVariable
+    name="tab.tableName"
+    valueReference="1"
+    description="Table name on file or in function usertab (see docu)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="CT_data"/>
+  </ScalarVariable>
+  <!-- Index of variable = "134" -->
+  <ScalarVariable
+    name="table_path"
+    valueReference="2"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="CT_01_full_period_table.txt"/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="26" dependencies="" dependenciesKind="" />
+      <Unknown index="27" dependencies="" dependenciesKind="" />
+      <Unknown index="28" dependencies="" dependenciesKind="" />
+      <Unknown index="29" dependencies="" dependenciesKind="" />
+      <Unknown index="30" dependencies="" dependenciesKind="" />
+      <Unknown index="33" dependencies="" dependenciesKind="" />
+      <Unknown index="35" dependencies="" dependenciesKind="" />
+      <Unknown index="36" dependencies="" dependenciesKind="" />
+      <Unknown index="37" dependencies="" dependenciesKind="" />
+      <Unknown index="44" dependencies="" dependenciesKind="" />
+    </Outputs>
+    <InitialUnknowns>
+      <Unknown index="26" dependencies="" dependenciesKind="" />
+      <Unknown index="27" dependencies="53 88 89 90 91 92 103" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="28" dependencies="" dependenciesKind="" />
+      <Unknown index="29" dependencies="50 54 55 56 57 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 93 94 103" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="30" dependencies="50 54 55 94 103" dependenciesKind="dependent dependent dependent dependent dependent" />
+      <Unknown index="33" dependencies="" dependenciesKind="" />
+      <Unknown index="35" dependencies="50 54 55 56 57 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 93 94 103" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="36" dependencies="" dependenciesKind="" />
+      <Unknown index="37" dependencies="50 54 55 56 57 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 93 94 103" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="44" dependencies="50 51 52 54 55 56 57 58 59 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 93 94 103" dependenciesKind="dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent dependent" />
+      <Unknown index="95" dependencies="" dependenciesKind="" />
+      <Unknown index="96" dependencies="97" dependenciesKind="dependent" />
+      <Unknown index="98" dependencies="" dependenciesKind="" />
+      <Unknown index="99" dependencies="" dependenciesKind="" />
+      <Unknown index="100" dependencies="" dependenciesKind="" />
+      <Unknown index="101" dependencies="" dependenciesKind="" />
+      <Unknown index="102" dependencies="" dependenciesKind="" />
+      <Unknown index="114" dependencies="" dependenciesKind="" />
+      <Unknown index="115" dependencies="" dependenciesKind="" />
+      <Unknown index="116" dependencies="" dependenciesKind="" />
+      <Unknown index="117" dependencies="" dependenciesKind="" />
+      <Unknown index="118" dependencies="" dependenciesKind="" />
+      <Unknown index="119" dependencies="" dependenciesKind="" />
+      <Unknown index="120" dependencies="" dependenciesKind="" />
+      <Unknown index="121" dependencies="" dependenciesKind="" />
+      <Unknown index="122" dependencies="" dependenciesKind="" />
+      <Unknown index="123" dependencies="" dependenciesKind="" />
+      <Unknown index="124" dependencies="" dependenciesKind="" />
+      <Unknown index="125" dependencies="" dependenciesKind="" />
+      <Unknown index="126" dependencies="" dependenciesKind="" />
+      <Unknown index="127" dependencies="" dependenciesKind="" />
+      <Unknown index="129" dependencies="" dependenciesKind="" />
+      <Unknown index="130" dependencies="" dependenciesKind="" />
+      <Unknown index="132" dependencies="134" dependenciesKind="dependent" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

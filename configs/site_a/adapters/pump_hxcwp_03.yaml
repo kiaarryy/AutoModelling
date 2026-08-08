@@ -1,0 +1,10 @@
+source_csv: heat_exchanger/HXCWP_03.csv
+timestamp: DateTime
+columns:
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  speed_Hz:
+    source: HXCWP-3E01-VSD-STS.Present Value (%)
+  run_signal:
+    source: HXCWP-3E01-VSD-STS.Present Value (%)

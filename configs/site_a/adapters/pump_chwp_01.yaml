@@ -1,0 +1,10 @@
+source_csv: pump/CHWP_01.csv
+timestamp: DateTime
+columns:
+  power_W:
+    source: P/kw
+    scale: 1000.0
+  speed_Hz:
+    source: CHWP-1E01-VSD-STS.Present Value (Hz)
+  run_signal:
+    source: CHWP-1E01-VSD-STS.Present Value (Hz)

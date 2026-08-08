@@ -1,0 +1,8 @@
+device,family,n_total,n_retained,retained_pct,removed_by_gate,removed_by_quarantine,quarantine_leaving water hotter than entering (range <= 0),quarantine_leaving water at or below wet bulb (approach <= 0)
+CT_01,cooling_tower,105121,36779,34.98730034912149,68339,3,3,0
+CT_02,cooling_tower,105121,1443,1.3727038365312354,103673,5,0,5
+CT_03,cooling_tower,105121,41876,39.835998515995854,62929,316,2,314
+CT_04,cooling_tower,105120,3515,3.343797564687976,101601,4,0,4
+CT_05,cooling_tower,105120,10519,10.006659056316591,94598,3,1,2
+CT_06,cooling_tower,105120,5110,4.861111111111111,100010,0,0,0
+CT_07,cooling_tower,105120,28821,27.417237442922374,76297,2,0,2
