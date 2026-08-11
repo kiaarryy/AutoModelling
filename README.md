@@ -3,8 +3,8 @@
 Code, configuration templates, derived evidence, and the public-data
 reproduction path for:
 
-> **AutoModelling: From BMS Operational Data to Validated Modelica Models for
-> HVAC Equipment**
+> **Automated generation and reasoned refusal of Modelica equipment models
+> from building management system records**
 
 AutoModelling converts building-management-system (BMS) archives into
 device-specific Modelica/FMU assets under five explicit contracts:
